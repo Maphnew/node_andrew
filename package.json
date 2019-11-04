@@ -1,0 +1,22 @@
+{
+  "name": "node_andrew",
+  "version": "1.0.0",
+  "description": "1 / 2|8분\r ## 섹션 2: Installing and Exploring Node.js\r 3 / 5|48분\r ## 섹션 3: Node.js Module System (Notes App)\r 3 / 6|1시간 13분",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Maphnew/node_andrew.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Maphnew/node_andrew/issues"
+  },
+  "homepage": "https://github.com/Maphnew/node_andrew#readme",
+  "dependencies": {
+    "validator": "^10.8.0"
+  }
+}
