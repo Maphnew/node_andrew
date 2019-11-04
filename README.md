@@ -37,6 +37,18 @@ $ npm i validator@10.8.0
 
 12. Printing in Color
 14분
+- search chalk on npm
+
+```bash
+$ npm i chalk@2.4.1
+```
+
+```JavaScript
+const chalk = require('chalk')
+consol.log(chalk.green.bold.inverse('Success!'))
+```
+
+- search "modbus", "redis" ...
 
 13. Global npm Modules and nodemon
 7분
