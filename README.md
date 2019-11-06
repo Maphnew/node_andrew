@@ -45,16 +45,97 @@ $ npm i chalk@2.4.1
 
 ```JavaScript
 const chalk = require('chalk')
-consol.log(chalk.green.bold.inverse('Success!'))
+consol.log(chalk.red.bold.inverse('Error!'))
 ```
 
 - search "modbus", "redis" ...
 
 13. Global npm Modules and nodemon
 7분
+- Global option(Local/Global modules)
+- Don't have to import modules and Can use on terminal
+- npm install nodemon@1.18.5 -g
+
+```bash
+$ nodemon app.js
+```
 
 ## 섹션 4: File System and Command Line Args (Notes App)
 0 / 11|2시간 15분
+
+14. Section Intro: File System and Command Line Args
+1분
+
+15. Getting Input from Users
+10분
+
+```bash
+$ node app.js add --title='This is my title.'
+```
+```JavaScript
+//app.js
+console.log(process.argv)
+```
+output
+```powershell
+[
+  'C:\\Program Files\\nodejs\\node.exe',
+  'C:\\workspaces\\workspaceNodeJS\\node_andrew\\app.js',
+  'add',
+  '--title=This is my title'
+]
+```
+
+16. Argument Parsing with Yargs: Part I
+15분
+
+```bash
+$ npm i yargs@14.2.0
+$ node app.js add --title="Things to buy"
+{_: [ 'add' ], title: 'Things to buy', '$0': 'app.js'}
+```
+
+```JavaScript
+yargs.command({
+    command: 'add',
+    describe: 'Add a new note',
+    handler: function(){
+        console.log('Adding a new note!')
+    }
+})
+```
+
+```bash
+$ node app.js add
+Adding a new note!
+{ _: [ 'add' ], '$0': 'app.js' }
+```
+
+17. Argument Parsing with Yargs: Part II
+11분
+
+18. Storing Data with JSON
+18분
+
+19. Adding a Note
+19분
+
+20. Removing a Note
+15분
+
+21. ES6 Aside: Arrow Functions
+14분
+
+22. Refactoring to Use Arrow Functions
+15분
+
+23. Listing Notes
+6분
+
+24. Reading a Note
+12분
+
+
 ## 섹션 5: Debugging Node.js (Notes Apps)
 0 / 3|22분
 ## 섹션 6: Asynchronous Node.js (Weather App)
