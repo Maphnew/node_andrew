@@ -114,6 +114,37 @@ Adding a new note!
 17. Argument Parsing with Yargs: Part II
 11분
 
+- builder / title, body
+- demandOption, type
+- yargs.parse()
+- function(argv)
+
+```JavaScript
+yargs.command({
+    command: 'add',
+    describe: 'Add a new note',
+    builder:{
+        title: {
+            describe: 'Note title',
+            demandOption: true,
+            type: 'string'
+        },
+        body:{
+            describe: 'Note body',
+            demandOption: true,
+            type: 'string'
+        }
+    },
+    handler: function(argv){
+        // console.log('Adding a new note!' + yargs.argv['title'])
+        console.log('Title: ' + argv.title)
+        console.log('Body: ' + argv.body)
+    }
+})
+
+yargs.parse()
+```
+
 18. Storing Data with JSON
 18분
 
