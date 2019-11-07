@@ -180,6 +180,49 @@ fs.writeFileSync('1-json.json', dataString)
 19. Adding a Note
 19분
 
+- define functions. addNote, loadNotes, saveNotes
+- load - duplication check - saveNotes
+
+```JavaScript
+//note.js
+const fs = require('fs')
+const addNote = function(title, body){
+    const notes = loadNotes()
+    const duplicateNotes = notes.filter(function(note){
+        return note.title === title
+    })
+
+    if(duplicateNotes.length === 0){
+        notes.push({
+            title:title,
+            body:body
+        })
+        saveNotes(notes)
+        console.log('New note added!')
+    }else{
+        console.log('Note title taken!')
+    }
+
+    
+}
+
+const saveNotes = function (notes) {
+    const dataJSON = JSON.stringify(notes)
+    fs.writeFileSync('notes.json', dataJSON)
+}
+
+const loadNotes = function () {
+    try{
+        const dataBuffer = fs.readFileSync('notes.json')
+        const dataJSON = dataBuffer.toString()
+        return JSON.parse(dataJSON)
+    } catch(e){
+        return []
+    }
+    
+}
+```
+
 20. Removing a Note
 15분
 
