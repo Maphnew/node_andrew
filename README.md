@@ -148,6 +148,35 @@ yargs.parse()
 18. Storing Data with JSON
 18분
 
+- read JSON file
+- Buffer(byte) to String
+- String to JSON
+- Change things
+- JSON to String
+- write json file with that String file
+
+```JavaScript
+//1-json.js
+const fs = require('fs')
+const dataBuffer = fs.readFileSync('1-json.json')
+const dataJSON = dataBuffer.toString()
+const data = JSON.parse(dataJSON)
+console.log(data.name)
+
+data.name = 'KIM'
+data.age = 50
+
+console.log(data)
+const dataString = JSON.stringify(data)
+fs.writeFileSync('1-json.json', dataString)
+```
+
+```JavaScript
+//1-json.json
+{"name":"KIM","planet":"Earth","age":50}
+```
+
+
 19. Adding a Note
 19분
 
