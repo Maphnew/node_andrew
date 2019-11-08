@@ -226,6 +226,51 @@ const loadNotes = function () {
 20. Removing a Note
 15분
 
+```JavaScript
+//app.js
+yargs.command({
+    command: 'remove',
+    describe: 'Remove a note',
+    builder:{
+        title: {
+            describe: 'Note title',
+            demandOption: true,
+            type: 'string'
+        }
+    },
+    handler: function(argv){
+        notes.removeNote(argv.title)
+        //console.log('Removing the note')
+    }
+})
+//note.js
+const removeNote = function(title){
+    const notes = loadNotes()
+    const notesToKeep = notes.filter(function(note){
+        return note.title !== title
+    })
+    console.log(notes)
+    console.log(notesToKeep)
+    if(notes.length === notesToKeep.length){
+        console.log(chalk.red.inverse("No note found!"))
+    }else{
+        saveNotes(notesToKeep)
+        console.log(chalk.green.inverse("Note removed!"))
+    }
+    
+}
+
+module.exports = {
+    getNotes: getNotes,
+    addNote: addNote,
+    removeNote: removeNote
+}
+```
+
+```bash
+$ node app.js remove --title="t"
+```
+
 21. ES6 Aside: Arrow Functions
 14분
 
