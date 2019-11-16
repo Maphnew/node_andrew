@@ -494,25 +494,436 @@ $ node --inspect-brk app.js add --title="t" --body="b"
 
 ## 섹션 7: Web Servers (Weather App)
 0 / 11|2시간 22분
+
+42. Section Intro: Web Servers
+2분
+
+43. Hello Express!
+18분
+
+44. Serving up HTML and JSON
+7분
+
+45. Serving up Static Assets
+15분
+
+46. Serving up CSS, JS, Images, and More
+12분
+
+47. Dynamic Pages with Templating
+20분
+
+48. Customizing the Views Directory
+7분
+
+49. Advanced Templating
+16분
+
+50. 404 Pages
+14분
+
+51. Styling the Application: Part I
+17분
+
+52. Styling the Application: Part II
+14분
+
+
 ## 섹션 8: Accessing API from Browser (Weather App)
 0 / 7|1시간 22분
+
+53. Section Intro: Accessing API from Browser
+1분
+
+54. The Query String
+17분
+
+55. Building a JSON HTTP Endpoint
+11분
+
+56. ES6 Aside: Default Function Parameters
+12분
+
+57. Browser HTTP Requests with Fetch
+13분
+
+58. Creating a Search Form
+14분
+
+59. Wiring up the User Interface
+
 ## 섹션 9: Application Deployment (Weather App)
 0 / 10|1시간 42분
+
+60. Section Intro: Application Deployment
+1분
+
+61. Joining Heroku and GitHub
+10분
+
+62. Version Control with Git
+8분
+
+63. Exploring Git
+7분
+
+64. Integrating Git
+17분
+
+65. Setting up SSH Keys
+9분
+
+66. Pushing Code to GitHub
+12분
+
+67. Deploying Node.js to Heroku
+16분
+
+68. New Feature Deployment Workflow
+14분
+
+69. Avoiding Global Modules
+
 ## 섹션 10: MongoDB and Promises (Task App)
 0 / 12|2시간 23분
+
+70. Section Intro: Databases and Advanced Asynchronous Development
+1분
+
+71. MongoDB and NoSQL Databases
+8분
+
+72. Installing MongoDB on macOS and Linux
+8분
+
+73. Installing MongoDB on Windows
+9분
+
+74. Installing Database GUI Viewer
+7분
+
+75. Connecting and Inserting Documents
+19분
+
+76. Inserting Documents
+17분
+
+77. The ObjectID
+15분
+
+78. Querying Documents
+17분
+
+79. Promises
+18분
+
+80. Updating Documents
+16분
+
+81. Deleting Documents
+8분
+
 ## 섹션 11: REST APIs and Mongoose (Task App)
 0 / 20|4시간 8분
+
+82. Section Intro: REST APIs and Mongoose
+1분
+
+83. Setting up Mongoose
+17분
+
+84. Creating a Mongoose Model
+5분
+
+85. Data Validation and Sanitization: Part I
+18분
+
+86. Data Validation and Sanitization: Part II
+12분
+
+87. Structuring a REST API
+15분
+
+88. Installing Postman
+8분
+
+89. Resource Creation Endpoints: Part I
+20분
+
+90. Resource Creation Endpoints: Part II
+9분
+
+91. Resource Reading Endpoints: Part I
+14분
+
+92. Resource Reading Endpoints: Part II
+7분
+
+93. Promise Chaining
+19분
+
+94. Promise Chaining Challenge
+7분
+
+95. Async/Await
+18분
+
+96. Async/Await: Part II
+12분
+
+97. Integrating Async/Await
+16분
+
+98. Resource Updating Endpoints: Part I
+16분
+
+99. Resource Updating Endpoints: Part II
+9분
+
+100. Resource Deleting Endpoints
+10분
+
+101. Separate Route Files
+15분
+
 ## 섹션 12: API Authentication and Security (Task App)
 0 / 15|3시간 17분
+
+102. Section Intro: API Authentication and Security
+1분
+
+103. Securely Storing Passwords: Part I
+11분
+
+104. Securely Storing Passwords: Part II
+19분
+
+105. Logging in Users
+14분
+
+106. JSON Web Tokens
+12분
+
+107. Generating Authentication Tokens
+14분
+
+108. Express Middleware
+13분
+
+109. Accepting Authentication Tokens
+20분
+
+110. Advanced Postman
+17분
+
+111. Logging Out
+11분
+
+112. Hiding Private Data
+11분
+
+113. Authenticating User Endpoints
+12분
+
+114. The User/Task Relationship
+19분
+
+115. Authenticating Task Endpoints
+16분
+
+116. Cascade Delete Tasks
+5분
+
 ## 섹션 13: Sorting, Pagination, and Filtering (Task App)
 0 / 5|42분
+117. Section Intro: Sorting, Pagination, and Filtering
+1분
+
+118. Working with Timestamps
+7분
+
+119. Filtering Data
+12분
+
+120. Paginating Data
+11분
+
+121. Sorting Data
+11분
+
 ## 섹션 14: File Uploads (Task App)
 0 / 8|1시간 23분
+122. Section Intro: File Uploads
+1분
+
+123. Adding Support for File Uploads
+19분
+
+124. Validating File Uploads
+15분
+
+125. Validation Challenge
+5분
+
+126. Handling Express Errors
+8분
+
+127. Adding Images to User Profile
+15분
+
+128. Serving up Files
+8분
+
+129. Auto-Cropping and Image Formatting
+12분
+
 ## 섹션 15: Sending Emails (Task App)
 0 / 6|1시간 25분
+130. Section Intro: Sending Emails
+1분
+
+131. Exploring SendGrid
+13분
+
+132. Sending Welcome and Cancelation Emails
+16분
+
+133. Environment Variables
+19분
+
+134. Creating a Production MongoDB Database
+15분
+
+135. Heroku Deployment
+20분
+
 ## 섹션 16: Testing Node.js (Task App)
 0 / 15|2시간 53분
+136. Section Intro: Testing Node.js
+2분
+
+137. Jest Testing Framework
+16분
+
+138. Writing Tests and Assertions
+18분
+
+139. Writing Your Own Tests
+6분
+
+140. Testing Asynchronous Code
+14분
+
+141. Testing an Express Application: Part I
+6분
+
+142. Testing an Express Application: Part II
+14분
+
+143. Jest Setup and Teardown
+14분
+
+144. Testing with Authentication
+13분
+
+145. Advanced Assertions
+13분
+
+146. Mocking Libraries
+6분
+
+147. Wrapping up User Tests
+16분
+
+148. Setup Task Test Suite
+15분
+
+149. Testing with Task Data
+16분
+
+150. Bonus: Extra Test Ideas
+3분
 ## 섹션 17: Real-Time Web Applications with Socket.io (Chat App)
 0 / 24|4시간 46분
+151. Section Intro: Real-Time Web Applications with Socket.io
+1분
+
+152. Creating the Chat App Project
+13분
+
+153. WebSockets
+6분
+
+154. Getting Started with Socket.io
+12분
+
+155. Socket.io Events
+17분
+
+156. Socket.io Events Challenge
+16분
+
+157. Broadcasting Events
+6분
+
+158. Sharing Your Location
+15분
+
+159. Event Acknowledgements
+13분
+
+160. Form and Button States
+11분
+
+161. Rendering Messages
+13분
+
+162. Rendering Location Messages
+10분
+
+163. Working with Time
+20분
+
+164. Timestamps for Location Messages
+7분
+
+165. Styling the Chat App
+13분
+
+166. Join Page
+6분
+
+167. Socket.io Rooms
+15분
+
+168. Storing Users: Part I
+17분
+
+169. Storing Users: Part II
+8분
+
+170. Tracking Users Joining and Leaving
+14분
+
+171. Sending Messages to Rooms
+14분
+
+172. Rendering User List
+12분
+
+173. Automatic Scrolling
+16분
+
+174. Deploying the Chat Application
+8분
+
 ## 섹션 18: Wrapping Up
 0 / 3|7분
+175. Section Intro
+1분
+
+176. New Feature Ideas
+4분
+
+177. Bonus: What should I learn next?
+3분
