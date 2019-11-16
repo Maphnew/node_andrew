@@ -274,8 +274,61 @@ $ node app.js remove --title="t"
 21. ES6 Aside: Arrow Functions
 14분
 
+```JavaScript
+// old
+// const square = function (x) {
+//     return x * x
+// }
+
+// arrow function
+// const square = (x) => {
+//     return x*x
+// }
+
+// const square = (x) => x*x
+
+// console.log(square(2))
+
+const event = {
+    name: 'Birthday Party',
+    guestList : ['Andrew','Jen','Mike'],
+    printGuestList() {
+        //const that = this
+
+        console.log('Guest list for ' + this.name)
+
+        // this.guestList.forEach(function(guest) {
+        //     console.log(guest + ' is attending ' + that.name)
+        // })
+        this.guestList.forEach((guest) => {
+            console.log(guest + ' is attending ' + this.name)
+        })
+    }
+}
+
+event.printGuestList()
+```
+
 22. Refactoring to Use Arrow Functions
 15분
+```JavaScript
+const addNote = (title, body) => {
+    const notes = loadNotes()
+    const duplicateNotes = notes.filter((note) => note.title === title)
+
+    if(duplicateNotes.length === 0){
+        notes.push({
+            title:title,
+            body:body
+        })
+        saveNotes(notes)
+        console.log(chalk.green.inverse('New note added!'))
+    }else{
+        console.log(chalk.red.inverse('Note title taken!'))
+    }
+  
+}
+```
 
 23. Listing Notes
 6분
