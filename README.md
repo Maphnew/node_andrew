@@ -450,6 +450,48 @@ $ node --inspect-brk app.js add --title="t" --body="b"
 
 ## 섹션 6: Asynchronous Node.js (Weather App)
 0 / 14|3시간 16분
+
+28. Section Intro: Asynchronous Node.js
+1분
+
+29. Asynchronous Basics
+8분
+
+30. Call Stack, Callback Queue, and Event Loop
+18분
+
+31. Making HTTP Requests
+15분
+
+32. Customizing HTTP Requests
+18분
+
+33. An HTTP Request Challenge
+19분
+
+34. Handling Errors
+18분
+
+35. The Callback Function
+16분
+
+36. Callback Abstraction
+19분
+
+37. Callback Abstraction Challenge
+14분
+
+38. Callback Chaining
+14분
+
+39. ES6 Aside: Object Property Shorthand and Destructuring
+15분
+
+40. Destructuring and Property Shorthand Challenge
+7분
+
+41. Bonus: HTTP Requests Without a Library
+
 ## 섹션 7: Web Servers (Weather App)
 0 / 11|2시간 22분
 ## 섹션 8: Accessing API from Browser (Weather App)
