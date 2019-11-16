@@ -392,6 +392,62 @@ yargs.command({
 
 ## 섹션 5: Debugging Node.js (Notes Apps)
 0 / 3|22분
+
+
+25. Section Intro: Debugging Node.js
+2분
+
+
+26. Debugging Node.js
+15분
+
+
+```JavaScript
+// 1.
+console.log()
+// 2.
+debugger
+
+//note.js
+const addNote = (title, body) => {
+    const notes = loadNotes()
+    const duplicateNote = notes.find((note) => note.title === title)
+
+    debugger
+    
+    if(!duplicateNote){
+        notes.push({
+            title:title,
+            body:body
+        })
+        saveNotes(notes)
+        console.log(chalk.green.inverse('New note added!'))
+    }else{
+        console.log(chalk.red.inverse('Note title taken!'))
+    }
+
+    
+}
+```
+```bash
+$ node --inspect-brk app.js add --title="t" --body="b"
+
+```
+- Run chrome browser and type "chrome://inspect"
+
+- click  + Add folder to workspace
+
+- click > Resume script execution
+
+- when the cursor on debugger, type "body" or "notes[1]" to Console window
+
+
+
+27. Error Messages
+
+- Error Messages on TERMINAL
+
+
 ## 섹션 6: Asynchronous Node.js (Weather App)
 0 / 14|3시간 16분
 ## 섹션 7: Web Servers (Weather App)
