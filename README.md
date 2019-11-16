@@ -359,6 +359,36 @@ yargs.command({
 24. Reading a Note
 12분
 
+```JavaScript
+// note.js
+const readNotes = (title) => {
+    const notes = loadNotes()
+    const note = notes.find((note) => note.title === title)
+
+    if(note){
+        console.log(chalk.green.inverse(note.title))
+        console.log(chalk.green(note.body))
+        
+    }else{
+        console.log(chalk.red.inverse('Error! There is noo note with that title!'))
+    }
+}
+//app.js
+yargs.command({
+    command: 'read',
+    describe: 'Read a note',
+    builder:{
+        title: {
+            describe: 'Note title',
+            demandOption: true,
+            type: 'string'
+        }
+    },
+    handler(argv) {
+        notes.readNotes(argv.title)
+    }
+})
+```
 
 ## 섹션 5: Debugging Node.js (Notes Apps)
 0 / 3|22분
