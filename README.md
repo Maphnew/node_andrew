@@ -333,6 +333,29 @@ const addNote = (title, body) => {
 23. Listing Notes
 6분
 
+```JavaScript
+//note.js
+const listNotes = () => {
+    console.log(chalk.blue.inverse("Your notes"))
+    const notes = loadNotes()
+    notes.forEach(note => {
+        console.log(note.title)
+    });
+}
+module.exports = {
+    getNotes: getNotes,
+    addNote: addNote,
+    removeNote: removeNote,
+    listNotes : listNotes
+}
+//app.js
+yargs.command({
+    command: 'list',
+    describe: 'List a note',
+    handler() {notes.listNotes()}
+})
+```
+
 24. Reading a Note
 12분
 
