@@ -454,8 +454,35 @@ $ node --inspect-brk app.js add --title="t" --body="b"
 28. Section Intro: Asynchronous Node.js
 1분
 
+- Asynchronous
+- non blocking
+- single threaded
+- event driven
+
 29. Asynchronous Basics
 8분
+
+```JavaScript
+//app.js for weather-app
+console.log('Starting')
+
+
+setTimeout(()=>{
+    console.log('2 Second Timer')
+}, 2000)
+
+setTimeout(() => {
+    console.log('0 Second Timer')
+}, 0)
+
+console.log('Stopping')
+```
+```bash
+Starting
+Stopping
+0 Second Timer
+2 Second Timer
+```
 
 30. Call Stack, Callback Queue, and Event Loop
 18분
