@@ -555,6 +555,28 @@ request({ url: geocodeURL, json: true}, (error, response) => {
 34. Handling Errors
 18분
 
+1. connection error.
+2. wrong input error.
+
+```JavaScript
+// app.js
+// const geocodeURL = 'https://api.mapbox.com/geocoding/v5/mapbox.places/Los%20Angeles.json?access_token=pk.eyJ1IjoibWFwaG5ldyIsImEiOiJjazM0OW82Z28wdWpoM2JvYjh5ZThpanNlIn0.HB5kQ-HAANoU2yXPmDXA2w'
+const geocodeURL = 'https://api.mapbox.com/geocoding/v5/mapbox.places/129999999.json?access_token=pk.eyJ1IjoibWFwaG5ldyIsImEiOiJjazM0OW82Z28wdWpoM2JvYjh5ZThpanNlIn0.HB5kQ-HAANoU2yXPmDXA2w'
+
+request({ url: geocodeURL, json: true}, (error, response) => {
+    if (error) {
+        console.log('Unable to connect to location service!')
+    } else if (response.body.features.length === 0) {
+        console.log('Unable to find location. Try another search.')
+    } else {
+        const latitude = response.body.features[0].center[1]
+        const longitude = response.body.features[0].center[0]
+        console.log(latitude, longitude)
+    }
+    
+})
+```
+
 35. The Callback Function
 16분
 
