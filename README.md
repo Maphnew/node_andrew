@@ -555,8 +555,8 @@ request({ url: geocodeURL, json: true}, (error, response) => {
 34. Handling Errors
 18분
 
-1. connection error.
-2. wrong input error.
+> 1. connection error.
+> 2. wrong input error.
 
 ```JavaScript
 // app.js
@@ -579,6 +579,20 @@ request({ url: geocodeURL, json: true}, (error, response) => {
 
 35. The Callback Function
 16분
+
+```JavaScript
+// playground/4-callbacks.js
+const add = (no1, no2, callback) => {
+    setTimeout(() => {
+        const num = no1 + no2
+        callback(num)
+    }, 2000)
+}
+
+add(1, 4, (sum) => {
+    console.log(sum) // Should print: 5
+})
+```
 
 36. Callback Abstraction
 19분
