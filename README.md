@@ -487,6 +487,12 @@ Stopping
 30. Call Stack, Callback Queue, and Event Loop
 18분
 
+- Call Stack > Node APIs > Callback Queue(Event Loop) > Call Stack
+
+- The Call Stack is a simple data structure provided by the V8 JavaScript engine. The job of the call stack is to track the execution of our program and it does that by keeping track of all of the functions that are currently running.
+
+- Call Stack에서 main()이 처리된 후 Callback Queue에서 CallStack으로 function을 보냄.
+
 31. Making HTTP Requests
 15분
 
