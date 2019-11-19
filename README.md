@@ -665,6 +665,40 @@ module.exports = forecast
 38. Callback Chaining
 14분
 
+```JavaScript
+//app.js
+const geocode = require('./utils/geocode')
+const forecast = require('./utils/forecast')
+
+const location = process.argv[2]
+
+if (location) {
+    geocode(location, (error, data) => {
+        if (error) {
+            return console.log(error)
+        } 
+        forecast(data.latitude, data.longitude, (error, forecastData) => {
+            if (error) {
+                return console.log(error)
+            }
+    
+            console.log(data.location)
+            console.log(forecastData)
+    
+        })
+    })
+} else {
+    console.log("Please provide an address.")
+}
+
+
+```
+```bash
+$ node app.js "New York"
+$ node app.js Boston
+$ node app.js
+```
+
 39. ES6 Aside: Object Property Shorthand and Destructuring
 15분
 
