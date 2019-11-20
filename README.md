@@ -747,6 +747,78 @@ transaction('order', product)
 40. Destructuring and Property Shorthand Challenge
 7분
 
+```JavaScript
+
+//app.js
+const geocode = require('./utils/geocode')
+const forecast = require('./utils/forecast')
+
+const location = process.argv[2]
+
+if (location) {
+    geocode(location, (error, {latitude, longitude, location}) => {
+        if (error) {
+            return console.log(error)
+        } 
+        forecast(latitude, longitude, (error, forecastData) => {
+            if (error) {
+                return console.log(error)
+            }
+    
+            console.log(location)
+            console.log(forecastData)
+    
+        })
+    })
+} else {
+    console.log("Please provide an address.")
+}
+
+//geocode.js
+const request = require('request')
+
+const geocode = (address, callback) => {
+    const url = 'https://api.mapbox.com/geocoding/v5/mapbox.places/' + encodeURIComponent(address) + '.json?access_token=pk.eyJ1IjoibWFwaG5ldyIsImEiOiJjazM0OW82Z28wdWpoM2JvYjh5ZThpanNlIn0.HB5kQ-HAANoU2yXPmDXA2w'
+    // encodeURIComponent() -> ? becomes %3F
+
+    request({ url, json: true }, (error, { body }) => {
+        if (error) {
+            callback('Unable to connect to location services!', undefined)
+        } else if (body.features.length === 0) {
+            callback('Unable to find location. Try another search.', undefined)
+        } else {
+            callback(undefined, {
+                latitude: body.features[0].center[1],
+                longitude: body.features[0].center[0],
+                location: body.features[0].place_name
+            })
+        }
+    })
+}
+
+module.exports = geocode
+
+//forecast.js
+const request = require('request')
+
+const forecast = (lat, lon, callback) => {
+    const url = 'https://api.darksky.net/forecast/a36cc7f940e72f0b614e6e427e964599/' +lat +','+ lon + '?units=si'
+
+    request({ url, json : true}, (error, { body }) => {
+        if (error) {
+            callback('Unable to connect to forecast services!', undefined)
+        } else if (body.error) {
+            callback('Unable to find location.', undefined)
+        } else {
+            callback(undefined, body.daily.data[0].summary + " It is currently " +body.currently.temperature+ " degrees out. There is a " +body.currently.precipProbability+"% chance of rain.")
+        }
+    })
+}
+
+module.exports = forecast
+
+```
+
 41. Bonus: HTTP Requests Without a Library
 
 ## 섹션 7: Web Servers (Weather App)
