@@ -820,6 +820,28 @@ module.exports = forecast
 ```
 
 41. Bonus: HTTP Requests Without a Library
+```JavaScript
+// playground/6-raq-http.js
+const https = require('https')
+const url = 'https://api.darksky.net/forecast/a36cc7f940e72f0b614e6e427e964599/40,-75'
+
+const request = https.request(url, (response) => {
+    let data = ''
+
+    response.on('data', (chunk) => {
+        data = data + chunk.toString()
+    })
+
+    response.on('end', () => {
+        const body = JSON.parse(data)
+        console.log(body)
+    })
+})
+request.on('error', (error) => {
+    console.log('An error', error)
+})
+request.end()
+```
 
 ## 섹션 7: Web Servers (Weather App)
 0 / 11|2시간 22분
