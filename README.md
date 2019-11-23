@@ -849,8 +849,39 @@ request.end()
 42. Section Intro: Web Servers
 2분
 
+- Let's get it!
+
 43. Hello Express!
 18분
+
+```JavaScript
+// web-server/src/app.js
+
+const express = require('express')
+
+const app = express()
+
+app.get('', (req, res) => {
+    res.send('Hello express!')
+})
+
+app.get('/help', (req, res) => {
+    res.send('Help page')
+})
+
+app.get('/about', (req, res)=>{
+    res.send('About page')
+})
+
+app.get('/weather', (req, res) => {
+    res.send('Weather page')
+})
+
+app.listen(3000, () => {
+    console.log('Server is up on port 3000.')
+})
+
+```
 
 44. Serving up HTML and JSON
 7분
