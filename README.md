@@ -854,6 +854,12 @@ request.end()
 43. Hello Express!
 18분
 
+- web-server/src/app.js
+```bash
+$ npm init -y
+$ npm i express@4.16.4
+```
+
 ```JavaScript
 // web-server/src/app.js
 
@@ -885,6 +891,42 @@ app.listen(3000, () => {
 
 44. Serving up HTML and JSON
 7분
+- Send back Array, JSON, HTML
+
+```JavaScript
+// web-server/src/app.js
+
+const express = require('express')
+
+const app = express()
+
+app.get('', (req, res) => {
+    res.send('<h1>Weather</h1>')
+})
+
+app.get('/help', (req, res) => {
+    res.send([{
+        name: 'Andrew'
+    },{
+        name: 'Sera'
+    }])
+})
+
+app.get('/about', (req, res)=>{
+    res.send('<h1>About page</h1>')
+})
+
+app.get('/weather', (req, res) => {
+    res.send({
+        forecast: 'good',
+        location: 'here'
+    })
+})
+
+app.listen(3000, () => {
+    console.log('Server is up on port 3000.')
+})
+```
 
 45. Serving up Static Assets
 15분
