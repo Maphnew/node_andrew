@@ -965,6 +965,48 @@ app.listen(3000, () => {
 46. Serving up CSS, JS, Images, and More
 12분
 
+- "link", "script", "img" tag
+- Client side javascript file (public/js/app.js)
+- css file
+
+```JavaScript
+// public/index.html
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="/css/styles.css">
+    <script src="/js/app.js"></script>
+</head>
+<body>
+    <h1>From a static file</h1>
+</body>
+</html>
+```
+```JavaScript
+// public/about.html
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+    <h1>About Page!</h1>
+    <img src="/img/me.jpg" />
+</body>
+</html>
+```
+```css
+/* public/css/styles.css */
+h1 {
+    color: grey;
+}
+
+img {
+    width: 250px;
+}
+```
+
+
 47. Dynamic Pages with Templating
 20분
 
