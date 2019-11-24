@@ -1052,6 +1052,24 @@ app.get('', (req, res) => {
 48. Customizing the Views Directory
 7분
 
+- Directory "views" is as default.
+- Visit Expressjs.com documents page
+
+```JavaScript
+// src.app.js
+
+// Define paths for Express config
+const publicDirectoryPath = path.join(__dirname, '../public')
+const viewsPath = path.join(__dirname, '../templates') // <-- this
+
+// Setup handlebars engine and views location
+app.set('view engine', 'hbs')
+app.set('views', viewsPath) // <-- and this
+
+// Setup static directory to serve
+app.use(express.static(publicDirectoryPath))
+```
+
 49. Advanced Templating
 16분
 
