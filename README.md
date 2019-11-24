@@ -931,6 +931,37 @@ app.listen(3000, () => {
 45. Serving up Static Assets
 15분
 
+- app.use(express.static(PUBLIC_PATH))
+
+```JavaScript
+// app.js
+const path = require('path')
+const express = require('express')
+
+console.log(__dirname)
+console.log(path.join(__dirname, '../public'))
+
+const app = express()
+const publicDirectoryPath = path.join(__dirname, '../public')
+
+app.use(express.static(publicDirectoryPath))
+
+app.get('/weather', (req, res) => {
+    res.send({
+        forecast: 'good',
+        location: 'here'
+    })
+})
+
+app.listen(3000, () => {
+    console.log('Server is up on port 3000. http://localhost:3000')
+})
+```
+
+- public/index.html
+- public/help.html
+- public/about.html
+
 46. Serving up CSS, JS, Images, and More
 12분
 
