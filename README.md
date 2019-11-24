@@ -1009,6 +1009,45 @@ img {
 
 47. Dynamic Pages with Templating
 20분
+- npm handlebars, npm hbs
+
+```bash
+$ npm i hbs@4.0.1
+```
+- html file > hbs file
+
+```hbs
+<!-- views/index.hbs -->
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <link rel="stylesheet" href="/css/styles.css">
+    <script src="/js/app.js"></script>
+
+</head>
+<body>
+    
+    <h1>{{title}}</h1>
+    <p>Create by {{name}}</p>
+
+</body>
+
+</html>
+```
+
+```JavaScript
+// src/app.js
+
+app.get('', (req, res) => {
+    res.render('index', {
+        title: 'Weather',
+        name: 'Andrew Mead'
+    })
+})
+
+```
 
 48. Customizing the Views Directory
 7분
