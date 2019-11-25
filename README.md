@@ -1073,6 +1073,58 @@ app.use(express.static(publicDirectoryPath))
 49. Advanced Templating
 16분
 
+- "Partials" with hbs
+```JavaScript
+// src/app.js
+const hbs = require('hbs')
+
+const partialsPath = path.join(__dirname, '../templates/partials')
+
+hbs.registerPartials(partialsPath)
+```
+
+```hbs
+<!-- templates/partials/header.hbs -->
+<h1>{{title}}</h1>
+
+<div>
+    <a href="/">Weather</a>
+    <a href="/about">About</a>
+    <a href="/help">Help</a>
+</div>
+
+<!-- templates/partials/footer.hbs -->
+<p>Created By {{name}}</p>
+```
+
+```bash
+$ nodemon src/app.js -e js,hbs
+```
+
+```hbs
+<!-- templates/views/index.hbs -->
+<body>
+    
+    {{>header}}
+    {{>footer}}
+
+</body>
+
+<!-- templates/views/about.hbs -->
+<body>
+    {{>header}}
+    <img src="/img/me.jpg" />
+    {{>footer}}
+</body>
+
+<!-- templates/views/help.hbs -->
+<body>
+    {{>header}}
+    <p>This is {{message}}</p>
+    {{>footer}}
+</body>
+```
+
 50. 404 Pages
 14분
 
