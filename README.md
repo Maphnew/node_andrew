@@ -1128,6 +1128,42 @@ $ nodemon src/app.js -e js,hbs
 50. 404 Pages
 14분
 
+- 404 pages with partials hbs
+
+```JavaScript
+// src/app.js
+app.get('/help/*', (req, res) => {
+    res.render('404', {
+        title: 'Error',
+        name: 'Maphnew Kim',
+        errorMessage: 'Help article not found.'
+    })
+})
+
+app.get('*', (req, res) => {
+    res.render('404', {
+        title: 'Error',
+        name: 'Maphnew',
+        errorMessage: 'Page not found.'
+    })
+})
+```
+
+```hbs
+<!-- templates/views/404.hbs -->
+<!DOCTYPE html>
+<html>
+    <header>
+        <link rel="stylesheet" href="/css/styles.css">
+    </header>
+    <body>
+        {{>header}}
+        <p>{{errorMessage}}</p>
+        {{>footer}}
+    </body>
+</html>
+```
+
 51. Styling the Application: Part I
 17분
 
