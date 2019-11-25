@@ -1167,6 +1167,44 @@ app.get('*', (req, res) => {
 51. Styling the Application: Part I
 17분
 
+```css
+/* public/css/styles.css */
+body {
+    color: #333333;
+    font-family: arial;
+    max-width: 650px;
+    margin: 0 auto;
+    padding: 0 16px;
+}
+
+footer {
+    color: #888888;
+    border-top: 1px solid #eeeeee;
+    margin-top: 16px;
+    padding: 16px 0;
+}
+
+header {
+    margin-top: 16px;
+    margin-bottom: 48px;
+}
+
+h1 {
+    font-size: 64px;
+    margin-bottom: 16px;
+}
+
+header a {
+    color: #888888;
+    margin-right: 16px;
+    text-decoration: none;
+}
+
+img {
+    width: 250px;
+}
+```
+
 52. Styling the Application: Part II
 14분
 
