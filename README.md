@@ -1298,7 +1298,7 @@ header a {
 > }  
 
 ```JavaScript
-// app.js
+// src/app.js
 
 app.get('/weather', (req, res) => {
     if (!req.query.address) {
@@ -1316,6 +1316,41 @@ app.get('/weather', (req, res) => {
 
 55. Building a JSON HTTP Endpoint
 11분
+- Browser 
+- http://localhost:3000/weather?address=boston
+> {  
+> &nbsp; &nbsp; location: "Boston, Massachusetts, United States",  
+> &nbsp; &nbsp; forecast: "Clear throughout the day. It is currently 8.16 degrees out. There is a 0% chance of rain.",  
+> &nbsp; &nbsp; address: "boston"  
+> }  
+
+```JavaScript
+// src/app.js
+app.get('/weather', (req, res) => {
+    if (!req.query.address) {
+        return res.send({
+            error: 'Error Message'
+        })
+    }
+    geocode(req.query.address, (error, {latitude, longitude, location}) => {
+        if(error) {
+            return res.send({ error })
+        }
+        forecast(latitude, longitude, (error, forecastData) => {
+            if(error) {
+                return res.send({ error })
+            }
+            res.send({
+                location, //short hand
+                forecast: forecastData,
+                address: req.query.address
+            })
+
+        })
+    })
+
+})
+```
 
 56. ES6 Aside: Default Function Parameters
 12분
