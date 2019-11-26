@@ -1289,6 +1289,31 @@ header a {
 54. The Query String
 17분
 
+- Browser
+- http://localhost:3000/weather?address=boston
+> {  
+> &nbsp; &nbsp; forecast: "good",  
+> &nbsp; &nbsp; location: "here",  
+> &nbsp; &nbsp; address: "boston"  
+> }  
+
+```JavaScript
+// app.js
+
+app.get('/weather', (req, res) => {
+    if (!req.query.address) {
+        return res.send({
+            error: 'Error Message'
+        })
+    }
+    res.send({
+        forecast: 'good',
+        location: 'here',
+        address: req.query.address
+    })
+})
+```
+
 55. Building a JSON HTTP Endpoint
 11분
 
