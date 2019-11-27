@@ -1398,7 +1398,20 @@ app.get('/weather', (req, res) => {
 
 57. Browser HTTP Requests with Fetch
 13분
+```JavaScript
+// public/js/app.js
+console.log('Client side javascript file is loaded!')
 
+fetch('http://localhost:3000/weather?address=?').then((response) => {
+    response.json().then((data) => {
+        if (data.error) {
+            return console.log(data.error)
+        }
+        console.log(data.location)
+        console.log(data.forecast)
+    })
+})
+```
 58. Creating a Search Form
 14분
 
