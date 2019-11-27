@@ -1355,6 +1355,47 @@ app.get('/weather', (req, res) => {
 56. ES6 Aside: Default Function Parameters
 12분
 
+- default parameters for a function, destructured parameters
+
+```JavaScript
+// playground/7-default-params.js
+const greeter = (name = 'user', {some, params = 0} = {}) => {
+    console.log('Hello ' + name)
+}
+
+greeter('Maphnew')
+
+greeter()
+```
+
+```JavaScript
+// src/app.js
+app.get('/weather', (req, res) => {
+    if (!req.query.address) {
+        return res.send({
+            error: 'Error Message'
+        })
+    }
+    geocode(req.query.address, (error, {latitude, longitude, location} = {}) => {
+        if(error) {
+            return res.send({ error })
+        }
+        forecast(latitude, longitude, (error, forecastData) => {
+            if(error) {
+                return res.send({ error })
+            }
+            res.send({
+                location, //short hand
+                forecast: forecastData,
+                address: req.query.address
+            })
+
+        })
+    })
+
+})
+```
+
 57. Browser HTTP Requests with Fetch
 13분
 
