@@ -1415,6 +1415,61 @@ fetch('http://localhost:3000/weather?address=?').then((response) => {
 58. Creating a Search Form
 14분
 
+```JavaScript
+//public/js/app.js
+console.log('Client side javascript file is loaded!')
+
+const weatherForm = document.querySelector('form')
+const search = document.querySelector('input')
+
+weatherForm.addEventListener('submit', (e) => {
+    e.preventDefault()
+
+    const location = search.value 
+
+    fetch('http://localhost:3000/weather?address='+location).then((response) => {
+        response.json().then((data) => {
+            if (data.error) {
+                return console.log(data.error)
+            }
+            console.log(data.location)
+            console.log(data.forecast)
+        })
+    })
+})
+```
+
+```hbs
+<!-- templates/views/index.hbs -->
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <title>Weather</title>
+    <link rel="icon" href="/img/weather.png">
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+    <div class="main-content">
+        {{>header}}
+        <p>Use this site to get your weather!</p>
+
+        <form>
+            <input placeholder="Location">
+            <button>Search</button>
+        </form>
+    </div>    
+    
+    {{>footer}}
+    
+    <script src="/js/app.js"></script>
+</body>
+
+</html>
+```
+- And then input some locations in the input box and click "search" button.
+
 59. Wiring up the User Interface
 
 ## 섹션 9: Application Deployment (Weather App)
