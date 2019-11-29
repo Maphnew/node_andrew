@@ -1570,7 +1570,6 @@ button {
 
 65. Setting up SSH Keys
 9분
-
 - SSH Key
 - Use git bash
 ```bash
