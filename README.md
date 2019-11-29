@@ -1571,6 +1571,20 @@ button {
 65. Setting up SSH Keys
 9분
 
+- SSH Key
+- Use git bash
+```bash
+$ ls -al ~/.ssh
+$ ssh-keygen -t rsa -b 4096 -C "zcm3118@gmail.com"
+$ ls -al ~/.ssh
+id_rsa
+id_rsa.pub
+$ eval $(ssh-agent -s)
+Agent pid 10064
+$ ssh-add ~/.ssh/id_rsa
+Identity added: /c/Users/Maphnew/.ssh/id_rsa (/c/Users/Maphnew/.ssh/id_rsa)
+```
+
 66. Pushing Code to GitHub
 12분
 
