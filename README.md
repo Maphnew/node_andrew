@@ -1589,6 +1589,58 @@ Identity added: /c/Users/Maphnew/.ssh/id_rsa (/c/Users/Maphnew/.ssh/id_rsa)
 
 67. Deploying Node.js to Heroku
 16분
+```bash
+$ heroku keys:add
+$ heroku create maphnew-weather-application
+```
+
+```json
+// package.json
+
+  "scripts": {
+    "start": "node src/app.js"
+  },
+
+
+```
+
+```bash
+$ npm run start
+```
+
+```JavaScript
+// src/app.js
+
+const port = process.env.PORT || 3000
+
+app.listen(port, () => {
+    console.log('Server is up on port '+port+'. http://localhost:'+port)
+})
+```
+```JavaScript
+// public/js/app.js
+    fetch('/weather?address='+location).then((response) => {
+        response.json().then((data) => {
+            if (data.error) {
+                return messageOne.textContent = data.error
+            }
+            messageOne.textContent = data.location
+            messageTwo.textContent = data.forecast
+        })
+    })
+```
+
+```bash
+$ git add .
+$ git commit -m "Setup app for Heroku"
+$ git push
+```
+
+
+```bash
+$ git remote
+$ git heroku master
+```
 
 68. New Feature Deployment Workflow
 14분
