@@ -1587,6 +1587,23 @@ Identity added: /c/Users/Maphnew/.ssh/id_rsa (/c/Users/Maphnew/.ssh/id_rsa)
 66. Pushing Code to GitHub
 12분
 
+```bash
+$ cat ~/.ssh/id_rsb.pun
+```
+- copy all "ssh-res AAA...."
+- go to gitbub.com - settings - SSH thing - New
+- paste in github
+
+```bash
+$ ssh -T git@github.com
+type yes
+```
+```bash
+$ git push -u origin master
+
+```
+
+
 67. Deploying Node.js to Heroku
 16분
 ```bash
