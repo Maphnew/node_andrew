@@ -1639,11 +1639,28 @@ $ git push
 
 ```bash
 $ git remote
-$ git heroku master
+$ git push heroku master
 ```
 
 68. New Feature Deployment Workflow
 14분
+
+```JavaScript
+// src/utils/forecast.js
+
+        } else {
+            // console.log(body.daily.data[0])
+            callback(undefined, body.daily.data[0].summary + "It is currently " +body.currently.temperature+ " degrees out. There is a " +body.currently.precipProbability+"% chance of rain. \n \
+            Temperature High: " + body.daily.data[0].temperatureHigh + " Temperature Low: " + body.daily.data[0].temperatureLow)
+        }
+```
+
+```bash
+$ git add .
+$ git commit -m "..."
+$ git push
+$ git push heroku master
+```
 
 69. Avoiding Global Modules
 
