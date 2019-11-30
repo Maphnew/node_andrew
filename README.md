@@ -1664,6 +1664,31 @@ $ git push heroku master
 
 69. Avoiding Global Modules
 
+- Global Modules & Local Modules
+- Dependencies & Dev Dependencies
+
+```json
+// package.json
+  "scripts": {
+    "start": "node src/app.js",
+    "dev": "nodemon src/app.js -e js,hbs"
+  },
+```
+```bash
+$ npm uninstall -g nodemon
+$ npm install nodemon@1.2.0 --save-dev
+```
+
+```json
+// package.json
+  "devDependencies": {
+    "nodemon": "^1.2.0"
+  }
+```
+```bash
+$ nodemon src/app.js -e js,hbs
+$ npm run dev
+```
 ## 섹션 10: MongoDB and Promises (Task App)
 0 / 12|2시간 23분
 
