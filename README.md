@@ -1741,6 +1741,11 @@ $ npm run dev
 74. Installing Database GUI Viewer
 7분
 
+- google : robo 3t
+- download and install robo3t
+- run robo3t and set connection localhost:27017
+- open shell, run db.version()
+
 75. Connecting and Inserting Documents
 19분
 
