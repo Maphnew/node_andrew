@@ -1881,6 +1881,22 @@ console.log(id.toHexString().length)
 78. Querying Documents
 17분
 
+```JavaScript
+//task-manager/mongodb.js
+
+    //challenge
+    db.collection('task').findOne({ _id: new ObjectID("5de371dd671cb7637c8afbe9") }, (error, task) => {
+        if (error) {
+            return console.log('Unable to fetch')
+        }
+        console.log(task)
+    })
+    
+    db.collection('task').find({ completed: false }).toArray((error, tasks) => {
+        console.log(tasks)
+    })
+```
+
 79. Promises
 18분
 
