@@ -1861,6 +1861,23 @@ MongoClient.connect(connectionURL, { useNweUrlParser: true }, (error, client) =>
 77. The ObjectID
 15분
 
+```JavaScript
+// task-manager/mongodb.js
+
+// const mongodb = require('mongodb')
+// const MongoClient = mongodb.MongoClient
+// const ObjectID = mongodb.ObjectID
+
+const { MongoClient, ObjectID } = require('mongodb')
+
+const connectionURL = 'mongodb://127.0.0.1:27017'
+const databaseName = 'task-manager'
+
+const id = new ObjectID()
+console.log(id.id.length)
+console.log(id.toHexString().length)
+```
+
 78. Querying Documents
 17분
 
