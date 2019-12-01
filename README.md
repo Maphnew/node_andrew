@@ -2005,6 +2005,51 @@ MongoClient.connect(connectionURL, { useNweUrlParser: true }, (error, client) =>
 81. Deleting Documents
 8분
 
+```JavaScript
+// task-manager/mongodb.js
+
+// CRUD create read update delete
+
+// const mongodb = require('mongodb')
+// const MongoClient = mongodb.MongoClient
+// const ObjectID = mongodb.ObjectID
+
+const { MongoClient, ObjectID } = require('mongodb')
+
+const connectionURL = 'mongodb://127.0.0.1:27017'
+const databaseName = 'task-manager'
+
+MongoClient.connect(connectionURL, { useNweUrlParser: true }, (error, client) => {
+    if (error) {
+        return console.log('Unable to connect to database!')
+    }
+
+    const db = client.db(databaseName)
+
+    // db.collection('users').deleteMany({
+    //     age: 27
+    // }).then((result) => {
+    //     console.log(result)
+    // }).catch((error) => {
+    //     console.log(error)
+    // })
+
+    //challenge
+
+    db.collection('task').deleteOne({
+        description: 'Wash dishes'
+    }).then((result) => {
+        console.log(result)
+    }).catch((error) => {
+        console.log(error)
+    })
+   
+})
+
+
+
+```
+
 ## 섹션 11: REST APIs and Mongoose (Task App)
 0 / 20|4시간 8분
 
