@@ -1715,6 +1715,16 @@ $ npm run dev
 71. MongoDB and NoSQL Databases
 8분
 
+- SQL(Structured Query Language) vs NoSQL(Not Only SQL)
+
+|SQL       | NoSQL    |
+|:--------:|:--------:|
+|DataBase  |DataBase  |
+|Row/Record|Document  |
+|Table     |Collection|
+|Column    |Field     |
+
+
 72. Installing MongoDB on macOS and Linux
 8분
 
