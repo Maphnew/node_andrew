@@ -1731,6 +1731,13 @@ $ npm run dev
 73. Installing MongoDB on Windows
 9분
 
+- download mongodb zip
+- unzip
+- mkdir mongodb-data
+
+```bash
+ $ D:\workspaces\workspaceNoSQL\mongodb\bin\mongod.exe --dbpath=d:/workspaces/workspaceNoSql/mongodb-data
+```
 74. Installing Database GUI Viewer
 7분
 
