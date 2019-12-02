@@ -2059,6 +2059,48 @@ MongoClient.connect(connectionURL, { useNweUrlParser: true }, (error, client) =>
 83. Setting up Mongoose
 17분
 
+- To start service mongodb
+```bash
+ $ D:\workspaces\workspaceNoSQL\mongodb\bin\mongod.exe --dbpath=d:/workspaces/workspaceNoSql/mongodb-data
+```
+- install mongoose
+```bash
+$ npm i mongoose@5.3.16
+
+```
+- Write data
+```JavaScript
+//task-manager/src/db/mongoose.js
+
+const mongoose = require('mongoose')
+
+mongoose.connect('mongodb://127.0.0.1:27017/task-manager-api', {
+    useNweUrlParser: true, 
+    useCreateIndex: true
+})
+
+const User = mongoose.model('User', {
+    name: {
+        type: String
+    },
+    age: {
+        type: Number
+    }
+})
+
+const me = new User({
+    name: 'Maphnew',
+    age: 'MMM'
+})
+
+me.save().then((me) => {
+    console.log(me)
+}).catch((error) => {
+    console.log('Error!', error)
+})
+
+```
+
 84. Creating a Mongoose Model
 5분
 

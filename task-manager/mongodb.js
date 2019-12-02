@@ -26,13 +26,13 @@ MongoClient.connect(connectionURL, { useNweUrlParser: true }, (error, client) =>
 
     //challenge
 
-    db.collection('task').deleteOne({
-        description: 'Wash dishes'
-    }).then((result) => {
-        console.log(result)
-    }).catch((error) => {
-        console.log(error)
-    })
+    // db.collection('task').deleteOne({
+    //     description: 'Wash dishes'
+    // }).then((result) => {
+    //     console.log(result)
+    // }).catch((error) => {
+    //     console.log(error)
+    // })
    
 })
 
