@@ -2104,6 +2104,33 @@ me.save().then((me) => {
 84. Creating a Mongoose Model
 5분
 
+```JavaScript
+//task-manager/src/db/mongoose.js
+
+//challenge
+
+const Tasks = mongoose.model('Tasks', {
+    description: {
+        type: String
+    },
+    completed: {
+        type: Boolean
+    }
+})
+
+const task = new Tasks({
+    description: 'Laundry',
+    completed: false
+})
+
+task.save().then((task) => {
+    console.log(laundry)
+}).catch((error) => {
+    console.log('Error!', error)
+})
+
+```
+
 85. Data Validation and Sanitization: Part I
 18분
 
