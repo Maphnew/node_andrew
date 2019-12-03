@@ -2214,8 +2214,27 @@ task.save().then((task) => {
 87. Structuring a REST API
 15분
 
+- CRUD
+> Create  
+>> POST/tasks  
+
+> Read  
+>> GET/tasks  
+>> GET/tasks/:id  
+
+> Update  
+>> PATCH/tasks/:id  
+
+> Delete  
+>> delete /tasks/:id
+
+
 88. Installing Postman
 8분
+
+- getpostman.com
+- Install
+- Make a new request, test with GET https://maphnew-weather-application.herokuapp.com/weather?address=boston
 
 89. Resource Creation Endpoints: Part I
 20분
