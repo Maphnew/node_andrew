@@ -2183,6 +2183,34 @@ const me = new User({
 86. Data Validation and Sanitization: Part II
 12분
 
+```JavaScript
+
+//task-manager/src/db/mongoose.js
+
+const Tasks = mongoose.model('Tasks', {
+    description: {
+        type: String,
+        required: true,
+        trim: true
+    },
+    completed: {
+        type: Boolean,
+        default: false
+    }
+})
+
+const task = new Tasks({
+    description: '      Laundry    '
+
+})
+
+task.save().then((task) => {
+    console.log(task)
+}).catch((error) => {
+    console.log('Error!', error)
+})
+```
+
 87. Structuring a REST API
 15분
 
