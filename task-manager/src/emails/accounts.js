@@ -1,12 +1,27 @@
-const sgMail = require('@sendgrid/mail')
+const nodemailer = require('nodemailer')
+require("dotenv").config()
 
-const sendgridAPIKey = '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'
 
-sgMail.setApiKey(sendgridAPIKey)
+const NODE_ENV = process.env.NODE_ENV || 1234
 
-sgMail.send({
-    to: 'zcm3118@gmail.com',
+let transporter = nodemailer.createTransport({
+    service: 'gmail',
+    auth: {
+        user: 'zcm3118@gmail.com',
+        pass: NODE_ENV
+    }
+})
+
+let mailOptions = {
     from: 'zcm3118@gmail.com',
-    subject: 'THis is my first creation',
-    text: 'I hope this one actually get to you.'
+    to: 'jinssakura@gmail.com',
+    subject: 'NODEMALER TEST!',
+    text: 'Hope this get to you'
+}
+
+transporter.sendMail(mailOptions, (error, info) => {
+    if (error) {
+        return console.log('Error!!!! ', error)
+    }
+    console.log('Email sent: ', info.response)
 })
