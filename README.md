@@ -2373,6 +2373,7 @@ task.save().then((task) => {
 
 131. Exploring SendGrid
 13분
+- 잘 안됨
 
 132. Sending Welcome and Cancelation Emails
 16분
