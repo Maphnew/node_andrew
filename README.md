@@ -2239,6 +2239,50 @@ task.save().then((task) => {
 89. Resource Creation Endpoints: Part I
 20분
 
+- Delete mongdb.js
+- Install express, nodemon
+```bash
+$ npm i nodemon@1.18.9 --save-dev
+```
+- Create src/index.js
+
+```JavaScript
+// src/index.js
+
+const express = require('express')
+require('./db/mongoose')
+const User = require('./models/user')
+
+const app = express()
+const port = process.env.PORT || 3000
+
+app.use(express.json())
+
+app.post('/users', (req, res) => {
+    const user = new User(req.body)
+
+    user.save().then(() => {
+        res.send(user)
+    }).catch((e) => {
+        res.status(400).send(e)
+    })
+})
+
+app.listen(port, () => {
+    console.log('Server is up on port ', port)
+})
+```
+- Modify package.json
+```JSON
+// package.json
+  "scripts": {
+    "start": "node src/index.js",
+    "dev": "nodemon src/index.js"
+  },
+```
+```bash
+$ npm run dev
+```
 
 ```JavaScript
 // src/models/user.js
@@ -2287,32 +2331,7 @@ const User = mongoose.model('User', {
 
 module.exports = User
 ```
-```JavaScript
-// src/index.js
 
-const express = require('express')
-require('./db/mongoose')
-const User = require('./models/user')
-
-const app = express()
-const port = process.env.PORT || 3000
-
-app.use(express.json())
-
-app.post('/users', (req, res) => {
-    const user = new User(req.body)
-
-    user.save().then(() => {
-        res.send(user)
-    }).catch((e) => {
-        res.status(400).send(e)
-    })
-})
-
-app.listen(port, () => {
-    console.log('Server is up on port ', port)
-})
-```
 
 
 - postman
@@ -2398,6 +2417,47 @@ app.listen(port, () => {
 
 90. Resource Creation Endpoints: Part II
 9분
+
+- Challenge
+- Create task.js in model, task creation endpoint
+- Test from postman
+
+```JavaScript
+// src/models/task.js
+const mongoose = require('mongoose')
+
+const Tasks = mongoose.model('Tasks', {
+    description: {
+        type: String,
+        required: true,
+        trim: true
+    },
+    completed: {
+        type: Boolean,
+        default: false
+    }
+})
+
+module.exports = Tasks
+```
+```JavaScript
+// src/inde.js
+const Task = require('./models/task')
+
+app.post('/tasks', (req, res) => {
+    const task = new Task(req.body)
+
+    task.save().then(() => {
+        res.status(201).send(task)
+    }).catch((e) => {
+        res.status(400).send(e)
+    })
+})
+
+```
+
+- Test on Postman: POST localhost:3000/tasks
+
 
 91. Resource Reading Endpoints: Part I
 14분
