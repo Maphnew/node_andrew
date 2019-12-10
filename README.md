@@ -2524,6 +2524,26 @@ app.get('/tasks/:id', (req, res) => {
 93. Promise Chaining
 19분
 
+```JavaScript
+// playground/8-promises.js
+const add = (a,b) => {
+    return new Promise((resolve, reject) => {
+        setTimeout(() => {
+            resolve(a+b)
+        }, 2000)
+    })
+}
+// multiple then call
+add(1, 1).then((sum) => {
+    console.log(sum)
+    return add(sum, 4)
+}).then((sum2) => {
+    console.log(sum2)
+}).catch((e) => {
+    console.log(e)
+})
+```
+
 94. Promise Chaining Challenge
 7분
 
