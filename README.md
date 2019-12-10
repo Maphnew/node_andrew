@@ -2565,7 +2565,34 @@ Task.findByIdAndDelete('5de64ee587212d5e90e1bdbe').then((task) => {
 
 95. Async/Await
 18분
+```JavaScript
+//playground/9-async-await.js
+const add = (a,b) => {
+    return new Promise((resolve, reject) => {
+        setTimeout(() => {
+            console.log(a, "+" , b)
+            if (a < 0 || b < 0) {
+                return reject('Numbers must be non-negative')
+            }
 
+            resolve(a+b)
+        }, 2000)
+    })
+}
+
+const doWork = async () => {
+    const sum = await add(1, 99)
+    const sum2 = await add(sum, 50)
+    const sum3 = await add(sum2, -3)
+    return sum3
+}
+
+doWork().then((result) => {
+    console.log('result: ', result)
+}).catch((e) => {
+    console.log('e: ', e)
+})
+```
 96. Async/Await: Part II
 12분
 
