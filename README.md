@@ -2596,6 +2596,35 @@ doWork().then((result) => {
 96. Async/Await: Part II
 12분
 
+```JavaScript
+// task-manager/playground/promise-chaining.js
+
+const updateAgeAndCount = async (id, age) => {
+    const user = await User.findByIdAndUpdate(id, { age: age })
+    const count = await User.countDocuments({ age })
+    return count
+}
+
+updateAgeAndCount('5deb7e614b65265b204eb86e', 2).then((count) => {
+    console.log(count)
+```
+
+```JavaScript
+// task-manager/playground/promise-chaining-2.js
+
+const deleteTaskAndCount = async (id) => {
+    const task = await Task.findByIdAndDelete(id)
+    const count = await Task.countDocuments({completed: false})
+    return count
+}
+
+deleteTaskAndCount('5dec4f17ffa5e85b809bc41b').then((count) => {
+    console.log(count)
+}).catch((e) => {
+    console.log(e)
+})
+```
+
 97. Integrating Async/Await
 16분
 
