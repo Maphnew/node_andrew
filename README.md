@@ -2796,7 +2796,194 @@ app.delete('/tasks/:id', async (req, res) => {
 
 101. Separate Route Files
 15분
+- Basic Structure
+```JavaScript
+const router = new express.Router()
+router.get('/test', (req,res)=>{
+    res.send('This is from my other router.')
+})
+app.use(router)
+```
 
+- make directory router and create user.js, task.js in it.
+
+```JavaScript
+// src/router/user.js
+const express = require('express')
+const User = require('../models/user')
+const router = new express.Router()
+
+router.post('/users', async (req, res) => {
+    const user = new User(req.body)
+
+    try {
+        await user.save()
+        res.status(201).send(user)
+    } catch (e) {
+        res.status(400).send(e)
+    }
+
+})
+
+router.get('/users', async (req, res) => {
+    try{
+        const users = await User.find({})
+        res.send(users)
+    }catch(e) {
+        res.status(500).send()
+    }
+})
+
+router.get('/users/:id', async (req, res) => {
+    const _id = req.params.id
+    try {
+        const user = await User.findById(_id)
+        if (!user) {
+            return res.status(404).send()
+        }
+
+        res.send(user)
+    } catch(e) {
+        res.status(500).send()
+    } 
+
+})
+
+router.patch('/users/:id', async (req, res) => {
+    const updates = Object.keys(req.body)
+    const allowedUpdates = ['name', 'email', 'password', 'age']
+    const isValidOperation = updates.every((update) => allowedUpdates.includes(update))
+    if (!isValidOperation) {
+        return res.status(400).send({ error: 'Invalid updates!' })
+    }
+    try {
+        const user = await User.findByIdAndUpdate(req.params.id, req.body, { new: true, runValidators: true })
+
+        if (!user) {
+            return res.status(404).send()
+        }
+
+        res.send(user)
+    } catch (e) {
+        res.status(400).send(e)
+    }
+})
+
+router.delete('/users/:id', async (req, res) => {
+    try {
+        const user = await User.findByIdAndDelete(req.params.id)
+
+        if(!user) {
+            return res.status(404).send()
+        }
+
+        res.send(user)
+    } catch(e) {
+        res.status(500).send()
+    }
+})
+module.exports = router
+```
+
+```JavaScript
+// src/router/task.js
+const express = require('express')
+const Task = require('../models/task')
+const router = new express.Router()
+
+
+router.post('/tasks', async (req, res) => {
+    const task = new Task(req.body)
+
+    try {
+        await task.save()
+        res.status(201).send(task)
+    } catch (e) {
+        res.status(400).send(e)
+    }
+
+})
+
+router.get('/tasks', async (req, res) => {
+
+    try {
+        const tasks = await Task.find({})
+        res.send(tasks)
+    } catch(e) {
+        res.status(500).send(e)
+    }
+
+})
+
+router.get('/tasks/:id', async (req, res) => {
+    const _id = req.params.id
+
+    try {
+        const task = await Task.findById(_id)
+        if(!task) {
+            return res.status(404).send()
+        }
+        res.send(task)
+    } catch(e) {
+        res.status(500).send()
+    }
+
+})
+
+router.patch('/tasks/:id', async (req,res) => {
+    const updates = Object.keys(req.body)
+    const allowedUpdates = ['description', 'completed']
+    const isValidOperation = updates.every((update) => allowedUpdates.includes(update))
+    if (!isValidOperation) {
+        return res.status(400).send({ error: 'Invalid Updates!' })
+    }
+    try {
+        const task = await Task.findByIdAndUpdate(req.params.id, req.body, { new: true, runValidators: true })
+        if(!task) {
+            return res.status(404).send()
+        }
+        res.send(task)
+    } catch(e) {
+        res.status(400).send(e)
+    }
+})
+
+router.delete('/tasks/:id', async (req, res) => {
+    try {
+        const task = await Task.findByIdAndDelete(req.params.id)
+
+        if(!task) {
+            return res.status(404).send()
+        }
+        res.send(task)
+    } catch (e) {
+        res.status(500).send(e)
+    }
+})
+
+module.exports = router
+```
+- export router from user.js, task.js
+- import router and app.use(router)
+
+```JavaScript
+// src/index.js
+const express = require('express')
+require('./db/mongoose')
+const userRouter = require('./router/user')
+const taskRouter = require('./router/task')
+
+const app = express()
+const port = process.env.PORT || 3000
+
+app.use(express.json())
+app.use(userRouter)
+app.use(taskRouter)
+
+app.listen(port, () => {
+    console.log('Server is up on port ', port)
+})
+```
 ## 섹션 12: API Authentication and Security (Task App)
 0 / 15|3시간 17분
 
