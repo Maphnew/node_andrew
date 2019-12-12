@@ -2993,6 +2993,33 @@ app.listen(port, () => {
 103. Securely Storing Passwords: Part I
 11분
 
+- hashing algorithm
+- myPassw0rd -> q2309usklnm23r58qyadhj23nr
+
+```bash
+$ npm i bcryptjs@2.4.3
+```
+```JavaScript
+// src/index.js
+// test bcryptjs
+
+const bcrypt = require('bcryptjs')
+
+const myFunction = async () => {
+    const password = 'Red12345!'
+    const hashedPassword = await bcrypt.hash(password, 8)
+
+    console.log(password)
+    console.log(hashedPassword)
+
+    const isMatch = await bcrypt.compare('red12345!', hashedPassword)
+    console.log(isMatch)
+}
+
+
+
+myFunction()
+```
 104. Securely Storing Passwords: Part II
 19분
 
