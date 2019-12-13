@@ -3112,6 +3112,38 @@ router.patch('/users/:id', async (req, res) => {
 105. Logging in Users
 14분
 
+```JavaScript
+// src/router/users.js
+router.post('/users/login', async (req, res) => {
+    try {
+        const user = await User.findByCredentials(req.body.email, req.body.password)
+
+        res.send(user)
+    } catch(e) {
+        res.status(400).send()
+    }
+})
+```
+
+```JavaScript
+// src/models/users.js
+userSchema.statics.findByCredentials = async (email, password) => {
+    const user = await User.findOne({ email })
+
+    if (!user) {
+        throw new Error('Unable to login')
+    }
+
+    const isMatch = await bcrypt.compare(password, user.password)
+
+    if(!isMatch) {
+        throw new Error('Unable to login')
+    }
+
+    return user
+}
+```
+
 106. JSON Web Tokens
 12분
 
