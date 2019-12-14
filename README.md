@@ -3147,6 +3147,32 @@ userSchema.statics.findByCredentials = async (email, password) => {
 106. JSON Web Tokens
 12분
 
+- JSON Web Token
+> Example: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiJhYmMxMjMiLCJpYXQiOjE1NzYzMTMxNzV9.Wrc1hAqpHgUMNeuqDwlgqob8r231wqMwgarkruP34QI  
+
+> first period - eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9 : base 64 encoded json string. Known as "header", Contains meta information about what type of token it is, algorithm that was used.
+
+> second one - eyJfaWQiOiJhYmMxMjMiLCJpYXQiOjE1NzYzMTMxNzV9 : base 64 encoded json string. Known as "payload", "body", Contains data that we provided.  
+
+> last one - Wrc1hAqpHgUMNeuqDwlgqob8r231wqMwgarkruP34QI : "signature", Used to validate that the token is trustworthy and has not been tapered with.  
+
+- https://www.base64decode.org/
+
+
+```JavaScript
+// src/app.js
+
+const jwt = require('jsonwebtoken')
+
+const myFunction = async () => {
+    const token = jwt.sign({ _id: 'abc123' }, 'thisismynewcourse', { expiresIn: '7 days' })
+    console.log(token)
+
+    const data = jwt.verify(token, 'thisismynewcourse')
+    console.log(data)
+}
+```
+
 107. Generating Authentication Tokens
 14분
 
