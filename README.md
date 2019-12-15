@@ -3144,11 +3144,13 @@ userSchema.statics.findByCredentials = async (email, password) => {
 }
 ```
 
+
 106. JSON Web Tokens
 12분
 
 - JSON Web Token
 > Example: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiJhYmMxMjMiLCJpYXQiOjE1NzYzMTMxNzV9.Wrc1hAqpHgUMNeuqDwlgqob8r231wqMwgarkruP34QI  
+
 
 > first period - eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9 : base 64 encoded json string. Known as "header", Contains meta information about what type of token it is, algorithm that was used.
 
@@ -3175,6 +3177,56 @@ const myFunction = async () => {
 
 107. Generating Authentication Tokens
 14분
+
+
+```JavaScript
+// src/models/user.js
++++++++
+    tokens: [{
+        token: {
+            type: String,
+            required: true
+        }
+    }]
+
+userSchema.methods.generateAuthToken = async function () {
+    const user = this
+    const token = jwt.sign({ _id: user._id.toString() }, 'thisismynewcourse')
+
+    user.tokens = user.tokens.concat({ token })
+    await user.save()
+
+    return token
+}
+```
+
+```JavaScript
+// src/router/user.js
+router.post('/users', async (req, res) => {
+    const user = new User(req.body)
+
+    try {
+        await user.save()
+        const token = await user.generateAuthToken()
+        res.status(201).send({ user, token })
+    } catch (e) {
+        res.status(400).send(e)
+    }
+
+})
+
+
+
+router.post('/users/login', async (req, res) => {
+    try {
+        const user = await User.findByCredentials(req.body.email, req.body.password)
+        const token = await user.generateAuthToken()
+        res.send({ user, token })
+    } catch(e) {
+        res.status(400).send()
+    }
+})
+```
 
 108. Express Middleware
 13분
