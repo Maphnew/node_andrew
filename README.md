@@ -3231,6 +3231,21 @@ router.post('/users/login', async (req, res) => {
 108. Express Middleware
 13분
 
+```JavaScript
+// src/index.js
+app.use((req, res, next) => {
+    if (req.method === 'GET') {
+        res.send('GET requests are disabled')
+    } else {
+        next()
+    }
+})
+
+// Without middleware: new request -> run route handler
+//
+// With middleware: new request -> do simething -> run route handler
+```
+
 109. Accepting Authentication Tokens
 20분
 
