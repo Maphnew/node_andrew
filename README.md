@@ -3279,6 +3279,12 @@ module.exports = auth
 110. Advanced Postman
 17분
 
+- Postman environment  
+- Postman environment variable  
+- Authorization: Inherit Auth from Parent  
+- 
+
+
 111. Logging Out
 11분
 
