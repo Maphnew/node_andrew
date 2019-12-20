@@ -3288,6 +3288,39 @@ module.exports = auth
 111. Logging Out
 11분
 
+
+```JavaScript
+// router/user.js
+
+router.post('/users/logout', auth, async (req, res) => {
+    try {
+        req.user.tokens = req.user.tokens.filter((token) => {
+            return token.token !== req.token
+        })
+        await req.user.save()
+
+        res.send()
+    } catch (e) {
+        res.status(500).send()
+    }
+})
+
+router.post('/users/logoutAll', auth, async (req, res) => {
+    try {
+        req.user.tokens = []
+        await req.user.save()
+
+        res.send()
+    } catch (e) {
+        res.status(500).send()
+    }
+})
+
+
+```
+- Test with postman, add request "logout user", "logout all"
+
+
 112. Hiding Private Data
 11분
 
