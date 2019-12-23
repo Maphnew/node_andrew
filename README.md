@@ -3282,7 +3282,6 @@ module.exports = auth
 - Postman environment  
 - Postman environment variable  
 - Authorization: Inherit Auth from Parent  
-- 
 
 
 111. Logging Out
@@ -3340,6 +3339,38 @@ userSchema.methods.toJSON = function () {
 
 113. Authenticating User Endpoints
 12분
+
+
+```JavaScript
+// src/router/user.js
+router.patch('/users/me', auth, async (req, res) => {
+    const updates = Object.keys(req.body)
+    const allowedUpdates = ['name', 'email', 'password', 'age']
+    const isValidOperation = updates.every((update) => allowedUpdates.includes(update))
+    if (!isValidOperation) {
+        return res.status(400).send({ error: 'Invalid updates!' })
+    }
+    try {
+        const user = await req.user
+        updates.forEach((update) => user[update] = req.body[update])
+        await user.save()
+
+        res.send(user)
+    } catch (e) {
+        res.status(400).send(e)
+    }
+})
+
+router.delete('/users/me', auth, async (req, res) => {
+    try {
+        await req.user.remove()
+        res.send(req.user)
+    } catch(e) {
+        res.status(500).send()
+    }
+})
+```
+
 
 114. The User/Task Relationship
 19분
