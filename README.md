@@ -3375,6 +3375,53 @@ router.delete('/users/me', auth, async (req, res) => {
 114. The User/Task Relationship
 19분
 
+
+```JavaScript
+// src/models/user.js
+userSchema.virtual('tasks', {
+    ref: 'Task',
+    localField: '_id',
+    foreignField: 'owner'
+})
+```
+```JavaScript
+// src/router/task.js
+router.post('/tasks', auth, async (req, res) => {
+
+    const task = new Task({
+        ...req.body, 
+        owner: req.user._id
+    })
+
+    try {
+        await task.save()
+        res.status(201).send(task)
+    } catch (e) {
+        res.status(400).send(e)
+    }
+
+})
+```
+```JavaScript
+
+// src/index.js
+const Task = require('./models/task')
+const User = require('./models/user')
+
+const main = async () => {
+    // const task = await Task.findById('5e00d76af451525e08aa22c5')
+    // await task.populate('owner').execPopulate()
+    // console.log(task.owner)
+
+    const user = await User.findById('5e00d74cf451525e08aa22c3')
+    await user.populate('tasks').execPopulate()
+    console.log(user.tasks)
+}
+
+main()
+```
+
+
 115. Authenticating Task Endpoints
 16분
 
