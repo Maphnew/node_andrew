@@ -3324,6 +3324,20 @@ router.post('/users/logoutAll', auth, async (req, res) => {
 112. Hiding Private Data
 11분
 
+
+```JavaScript
+// src/models/user.js
+userSchema.methods.toJSON = function () {
+    const user = this
+    const userObject = user.toObject()
+
+    delete userObject.password
+    delete userObject.tokens
+
+    return userObject
+}
+```
+
 113. Authenticating User Endpoints
 12분
 
