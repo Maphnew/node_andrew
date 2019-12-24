@@ -3516,6 +3516,86 @@ userSchema.pre('remove', async function (next) {
 118. Working with Timestamps
 7분
 
+```JavaScript
+// src/models/user.js
+const userSchema = new mongoose.Schema({
+    name: {
+        type: String,
+        required: true,
+        trim: true
+    },
+    email: {
+        type: String,
+        unique: true,
+        required: true,
+        trim: true,
+        lowercase: true,
+        validate(value) {
+            if (!validator.isEmail(value)) {
+                throw new Error('Email is invalid')
+            }
+        }
+    },
+    password: {
+        type: String,
+        required: true,
+        minlength: 7,
+        trim: true,
+        validate(value) {
+            if (value.toLowerCase().includes('password')) {
+                throw new Error('Password cannot contain "password"')
+            }
+        }
+    },
+    age: {
+        type: Number,
+        default: 0,
+        validate(value) {
+            if (value < 0) {
+                throw new Error('Age must be a positive number')
+            }
+        }
+    },
+    tokens: [{
+        token: {
+            type: String,
+            required: true
+        }
+    }]
+
+}, {
+    timestamps: true
+})
+```
+
+```JavaScript
+// src/models/task.js
+const mongoose = require('mongoose')
+
+const taskSchema = new mongoose.Schema({
+    description: {
+        type: String,
+        required: true,
+        trim: true
+    },
+    completed: {
+        type: Boolean,
+        default: false
+    },
+    owner: {
+        type: mongoose.Schema.Types.ObjectId,
+        required: true,
+        ref: 'User'
+    }
+}, {
+    timestamps: true
+})
+
+const Tasks = mongoose.model('Task', taskSchema)
+
+module.exports = Tasks
+```
+
 119. Filtering Data
 12분
 
