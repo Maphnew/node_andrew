@@ -3599,6 +3599,27 @@ module.exports = Tasks
 119. Filtering Data
 12분
 
+```JavaScript
+// src/router/task.js
+// GET /tasks?completed=true
+router.get('/tasks', auth, async (req, res) => {
+    const match = {}
+
+    if(req.query.completed) {
+        match.completed = req.query.completed === 'true'
+    }
+    try {
+        await req.user.populate({
+            path: 'tasks',
+            match
+        }).execPopulate()
+        res.send(req.user.tasks)
+    } catch(e) {
+        res.status(500).send(e)
+    }
+})
+```
+
 120. Paginating Data
 11분
 
