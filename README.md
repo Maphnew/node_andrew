@@ -3694,6 +3694,30 @@ router.get('/tasks', auth, async (req, res) => {
 123. Adding Support for File Uploads
 19분
 
+```JavaScript
+// src/index.js
+const multer = require('multer')
+const upload = multer({
+    dest: 'images'
+})
+app.post('/upload', upload.single('upload'), (req, res) => {
+    res.send()
+})
+
+```
+
+```JavaScript
+// src/router/user.js
+
+const upload = multer({
+    dest: 'avatars'
+})
+
+router.post('/users/me/avatar', upload.single('avatar'), (req,res) => {
+    res.status(200).send()
+})
+```
+
 124. Validating File Uploads
 15분
 
