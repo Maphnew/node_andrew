@@ -3496,6 +3496,18 @@ router.delete('/tasks/:id', auth, async (req, res) => {
 116. Cascade Delete Tasks
 5분
 
+```JavaScript
+// src/models/user.js
+// Delete user tasks when user is removed
+userSchema.pre('remove', async function (next) {
+    const user = this
+
+    await Task.deleteMany({ owner: user._id })
+
+    next()
+})
+```
+
 ## 섹션 13: Sorting, Pagination, and Filtering (Task App)
 0 / 5|42분
 117. Section Intro: Sorting, Pagination, and Filtering
