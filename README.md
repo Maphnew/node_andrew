@@ -3759,6 +3759,26 @@ const upload = multer({
 126. Handling Express Errors
 8분
 
+```JavaScript
+// src/index.js
+
+app.post('/upload', upload.single('upload'), (req, res) => {
+    res.send()
+}, (error, req, res, next) => {
+    res.status(400).send({error: error.message})
+})
+```
+
+```JavaScript
+// src/router/user.js
+
+router.post('/users/me/avatar', upload.single('avatar'), (req,res) => {
+    res.status(200).send()
+}, (error, req, res, next) => {
+    res.status(400).send({error: error.message})
+})
+```
+
 127. Adding Images to User Profile
 15분
 
