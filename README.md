@@ -3741,6 +3741,21 @@ const upload = multer({
 125. Validation Challenge
 5분
 
+```JavaScript
+const upload = multer({
+    dest: 'avatars',
+    limits: {
+        fileSize: 1000000
+    },
+    fileFilter(req, file, cb) {
+        if(!file.originalname.match(/\.(jpg|jpeg|png)$/)) {
+            return cb(new Error('Please upload jpg or jpeg or png'))
+        }
+        cb(undefined, true)
+    }
+})
+```
+
 126. Handling Express Errors
 8분
 
