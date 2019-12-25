@@ -3873,6 +3873,25 @@ router.delete('/users/me/avatar', auth, async (req,res) => {
 128. Serving up Files
 8분
 
+```JavaScript
+// src/router/user.js
+
+router.get('/users/:id/avatar', async (req, res) => {
+    try {
+        const user = await User.findById(req.params.id)
+
+        if (!user || !user.avatar) {
+            throw new Error()
+        }
+
+        res.set('Content-Type', 'image/jpg')
+        res.send(user.avatar)
+    } catch (e){
+        res.status(404).send()
+    }
+})
+```
+
 129. Auto-Cropping and Image Formatting
 12분
 
