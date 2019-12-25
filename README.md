@@ -3782,6 +3782,94 @@ router.post('/users/me/avatar', upload.single('avatar'), (req,res) => {
 127. Adding Images to User Profile
 15분
 
+- add avatar (type: Buffer)
+
+```JavaScript
+// src/models/user.js
+
+const userSchema = new mongoose.Schema({
+    name: {
+        type: String,
+        required: true,
+        trim: true
+    },
+    email: {
+        type: String,
+        unique: true,
+        required: true,
+        trim: true,
+        lowercase: true,
+        validate(value) {
+            if (!validator.isEmail(value)) {
+                throw new Error('Email is invalid')
+            }
+        }
+    },
+    password: {
+        type: String,
+        required: true,
+        minlength: 7,
+        trim: true,
+        validate(value) {
+            if (value.toLowerCase().includes('password')) {
+                throw new Error('Password cannot contain "password"')
+            }
+        }
+    },
+    age: {
+        type: Number,
+        default: 0,
+        validate(value) {
+            if (value < 0) {
+                throw new Error('Age must be a positive number')
+            }
+        }
+    },
+    tokens: [{
+        token: {
+            type: String,
+            required: true
+        }
+    }],
+    avatar: {
+        type: Buffer
+    }
+
+}, {
+    timestamps: true
+})
+
+```
+- use req.file.buffer
+
+```JavaScript
+// src/router/user.js
+router.post('/users/me/avatar', auth, upload.single('avatar'), async (req,res) => {
+    req.user.avatar = req.file.buffer
+    await req.user.save()
+    res.status(200).send()
+}, (error, req, res, next) => {
+    res.status(400).send({error: error.message})
+})
+```
+- check robo3T(DB)
+- go to www.jsbin.com 
+- test binary text to jsbin
+```JavaScript
+<img src="data:image/jpg;base64, binary text from DB" >
+```
+
+- create delete router
+```JavaScript
+// src/router/user.js
+
+router.delete('/users/me/avatar', auth, async (req,res) => {
+    req.user.avatar = undefined
+    await req.user.save()
+    res.status(200).send()
+})
+```
+
 128. Serving up Files
 8분
 
