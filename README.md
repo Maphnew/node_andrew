@@ -3955,7 +3955,36 @@ router.get('/users/:id/avatar', async (req, res) => {
 
 131. Exploring SendGrid
 13분
-- 잘 안됨
+- sendgrid sign up
+- get AIPKey
+- npm install sendgrid mail
+
+```bash
+$ npm i @sendgrid/mail@6.4.0
+```
+
+```JavaScript
+// src/emails/account.js
+
+const sgMail = require('@sendgrid/mail')
+
+const sendgridAPIKey = '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'
+
+sgMail.setApiKey(sendgridAPIKey)
+
+sgMail.send({
+    to:'zcm3118@gmail.com',
+    from: 'zcm3118@gmail.com',
+    subject: 'This is my first creation!',
+    text: 'I hope this one actually get to you'
+})
+```
+
+```bash
+$ node src/emails/account.js
+```
+
+- check your email
 
 132. Sending Welcome and Cancelation Emails
 16분
