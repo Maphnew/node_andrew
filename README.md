@@ -3721,6 +3721,23 @@ router.post('/users/me/avatar', upload.single('avatar'), (req,res) => {
 124. Validating File Uploads
 15분
 
+```JavaScript
+// src/index.js
+const upload = multer({
+    dest: 'images',
+    limits: {
+        fileSize: 1000000
+    },
+    fileFilter(req, file, cb) {
+        if (!file.originalname.match(/\.(doc|docx)$/)) {
+            return cb(new Error('Please upload a PDF'))
+        }
+
+        cb(undefined, true)
+    }
+})
+```
+
 125. Validation Challenge
 5분
 
