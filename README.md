@@ -3945,9 +3945,6 @@ router.get('/users/:id/avatar', async (req, res) => {
     }
 })
 ```
-
-
-
 ## 섹션 15: Sending Emails (Task App)
 0 / 6|1시간 25분
 130. Section Intro: Sending Emails
