@@ -1,5 +1,4 @@
 const nodemailer = require('nodemailer')
-require("dotenv").config()
 
 
 const NODE_ENV = process.env.NODE_ENV || 1234

@@ -3989,6 +3989,19 @@ $ node src/emails/account.js
 133. Environment Variables
 19분
 
+```bash
+$ npm i env-cmd@8.0.2 --save-dev
+```
+
+- mkdir /task-manager/config/
+- mkfile dev.env
+
+- PORT
+- SENDGRID_APIKEY
+- JWT_SECRET
+- MONGODB_URL
+
+
 134. Creating a Production MongoDB Database
 15분
 
