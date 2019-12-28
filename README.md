@@ -4016,6 +4016,44 @@ $ npm i env-cmd@8.0.2 --save-dev
 137. Jest Testing Framework
 16분
 
+
+> Why test?  
+>> - Saves time  
+>> - Creates reliable software  
+>> - Gives flexibility to developers  
+>>   - Refactoring  
+>>   - Collaborating  
+>>   - Profiling  
+>> - Peace of mind  
+
+```bash
+$ npm i jest@24.9.0 --save-dev
+```
+```json
+// package.json
+
+  "scripts": {
+    "start": "node src/index.js",
+    "dev": "env-cmd ./config/dev.env nodemon src/index.js",
+    "test":"jest"
+  },
+```
+```JavaScript
+// /tests/math.test.js
+
+test('Hello world!', () => {
+
+})
+
+test('This should fail', () => {
+    throw new Error('Failure!')
+})
+
+```
+```bash
+$ npm test
+```
+
 138. Writing Tests and Assertions
 18분
 
