@@ -4057,6 +4057,43 @@ $ npm test
 138. Writing Tests and Assertions
 18분
 
+```JavaScript
+// src/math.js
+const calculateTip = (total, tipPercent = .25) => total + (total * tipPercent)
+module.exports = {
+    calculateTip
+}
+```
+
+```JavaScript
+// tests/math.test.js
+
+const { calculateTip } = require('../src/math')
+
+test('Should calculate total and tip', () => {
+    const total = calculateTip(10, .3)
+    expect(total).toBe(13)
+})
+
+test('Should calculate total with default tip', () => {
+    const total = calculateTip(10)
+    expect(total).toBe(12.5)
+})
+
+//
+// Why test?
+
+// - Saves time
+// - Creates reliable software
+// - Gives flexibility to developers
+//   - Refactoring
+//   - Collaborating
+//   - Profiling
+// - Peace of mind
+```
+```bash
+$ npm test
+```
 139. Writing Your Own Tests
 6분
 
