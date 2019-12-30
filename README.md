@@ -1,8 +1,30 @@
-## 섹션 1: Welcome
+# Table of Contents
+
+1. [Section 1: Welcome 1 / 2|8분](#Section-1:-Welcome)  
+2. [Section 2: Installing and Exploring Node.js 3 / 5|48분](#Section-2:-Installing-and-Exploring-Node.js)  
+3. [Section 3: Node.js Module System (Notes App) 6 / 6|1시간 13분](#Section-3:-Node.js-Module-System-(Notes-App))  
+4. [Section 4: File System and Command Line Args (Notes App) 11 / 11|2시간 15분 ](#Section-4:-File-System-and-Command-Line-Args-(Notes-App))  
+5. [Section 5: Debugging Node.js (Notes Apps) 3 / 3|22분](#Section-5:-Debugging-Node.js-(Notes-Apps))  
+6. [Section 6: Asynchronous Node.js (Weather App) 14 / 14|3시간 16분](#Section-6:-Asynchronous-Node.js-(Weather-App))  
+7. [Section 7: Web Servers (Weather App) 11 / 11|2시간 22분](#Section-7:-Web-Servers-(Weather-App))  
+8. [Section 8: Accessing API from Browser (Weather App) 7 / 7|1시간 22분](#Section-8:-Accessing-API-from-Browser-(Weather-App))  
+9. [Section 9: Application Deployment (Weather App) 10 / 10|1시간 42분](#Section-9:-Application-Deployment-(Weather-App))  
+10. [Section 10: MongoDB and Promises (Task App) 11 / 12|2시간 23분](#Section-10:-MongoDB-and-Promises-(Task-App))  
+11. [Section 11: REST APIs and Mongoose (Task App) 20 / 20|4시간 8분](#Section-11:-REST-APIs-and-Mongoose-(Task-App))  
+12. [Section 12: API Authentication and Security (Task App) 15 / 15|3시간 17분](#Section-12:-API-Authentication-and-Security-(Task-App))  
+13. [Section 13: Sorting, Pagination, and Filtering (Task App) 5 / 5|42분](#Section-13:-Sorting,-Pagination,-and-Filtering-(Task-App))  
+14. [Section 14: File Uploads (Task App) 8 / 8|1시간 23분](#Section-14:-File-Uploads-(Task-App))  
+15. [Section 15: Sending Emails (Task App) 6 / 6|1시간 25분](#Section-15:-Sending-Emails-(Task-App))  
+16. [Section 16: Testing Node.js (Task App) 15 / 15|2시간 53분](#Section-16:-Testing-Node.js-(Task-App))  
+17. [Section 17: Real-Time Web Applications with Socket.io (Chat App) 0 / 24|4시간 46분](#Section-17:-Real-Time-Web-Applications-with-Socket.io-(Chat-App))  
+18. [Section 18: Wrapping Up 0 / 3|7분](#Section-18:-Wrapping-Up)  
+
+
+## Section 1: Welcome
 1 / 2|8분
-## 섹션 2: Installing and Exploring Node.js
+## Section 2: Installing and Exploring Node.js
 3 / 5|48분
-## 섹션 3: Node.js Module System (Notes App)
+## Section 3: Node.js Module System (Notes App)
 3 / 6|1시간 13분
 
 8. Section Intro: Node.js Module System
@@ -60,7 +82,7 @@ consol.log(chalk.red.bold.inverse('Error!'))
 $ nodemon app.js
 ```
 
-## 섹션 4: File System and Command Line Args (Notes App)
+## Section 4: File System and Command Line Args (Notes App)
 0 / 11|2시간 15분
 
 14. Section Intro: File System and Command Line Args
@@ -390,7 +412,7 @@ yargs.command({
 })
 ```
 
-## 섹션 5: Debugging Node.js (Notes Apps)
+## Section 5: Debugging Node.js (Notes Apps)
 0 / 3|22분
 
 
@@ -448,7 +470,7 @@ $ node --inspect-brk app.js add --title="t" --body="b"
 - Error Messages on TERMINAL
 
 
-## 섹션 6: Asynchronous Node.js (Weather App)
+## Section 6: Asynchronous Node.js (Weather App)
 0 / 14|3시간 16분
 
 28. Section Intro: Asynchronous Node.js
@@ -843,7 +865,7 @@ request.on('error', (error) => {
 request.end()
 ```
 
-## 섹션 7: Web Servers (Weather App)
+## Section 7: Web Servers (Weather App)
 0 / 11|2시간 22분
 
 42. Section Intro: Web Servers
@@ -1280,7 +1302,7 @@ header a {
 ```
 
 
-## 섹션 8: Accessing API from Browser (Weather App)
+## Section 8: Accessing API from Browser (Weather App)
 0 / 7|1시간 22분
 
 53. Section Intro: Accessing API from Browser
@@ -1550,7 +1572,7 @@ button {
 }
 ```
 
-## 섹션 9: Application Deployment (Weather App)
+## Section 9: Application Deployment (Weather App)
 0 / 10|1시간 42분
 
 60. Section Intro: Application Deployment
@@ -1706,7 +1728,7 @@ $ npm install nodemon@1.2.0 --save-dev
 $ nodemon src/app.js -e js,hbs
 $ npm run dev
 ```
-## 섹션 10: MongoDB and Promises (Task App)
+## Section 10: MongoDB and Promises (Task App)
 0 / 12|2시간 23분
 
 70. Section Intro: Databases and Advanced Asynchronous Development
@@ -2050,7 +2072,7 @@ MongoClient.connect(connectionURL, { useNweUrlParser: true }, (error, client) =>
 
 ```
 
-## 섹션 11: REST APIs and Mongoose (Task App)
+## Section 11: REST APIs and Mongoose (Task App)
 0 / 20|4시간 8분
 
 82. Section Intro: REST APIs and Mongoose
@@ -2984,7 +3006,7 @@ app.listen(port, () => {
     console.log('Server is up on port ', port)
 })
 ```
-## 섹션 12: API Authentication and Security (Task App)
+## Section 12: API Authentication and Security (Task App)
 0 / 15|3시간 17분
 
 102. Section Intro: API Authentication and Security
@@ -3508,7 +3530,7 @@ userSchema.pre('remove', async function (next) {
 })
 ```
 
-## 섹션 13: Sorting, Pagination, and Filtering (Task App)
+## Section 13: Sorting, Pagination, and Filtering (Task App)
 0 / 5|42분
 117. Section Intro: Sorting, Pagination, and Filtering
 1분
@@ -3686,7 +3708,7 @@ router.get('/tasks', auth, async (req, res) => {
 })
 ```
 
-## 섹션 14: File Uploads (Task App)
+## Section 14: File Uploads (Task App)
 0 / 8|1시간 23분
 122. Section Intro: File Uploads
 1분
@@ -3945,7 +3967,7 @@ router.get('/users/:id/avatar', async (req, res) => {
     }
 })
 ```
-## 섹션 15: Sending Emails (Task App)
+## Section 15: Sending Emails (Task App)
 0 / 6|1시간 25분
 130. Section Intro: Sending Emails
 1분
@@ -4008,7 +4030,7 @@ $ npm i env-cmd@8.0.2 --save-dev
 135. Heroku Deployment
 20분
 
-## 섹션 16: Testing Node.js (Task App)
+## Section 16: Testing Node.js (Task App)
 0 / 15|2시간 53분
 136. Section Intro: Testing Node.js
 2분
@@ -4605,7 +4627,7 @@ test('Should not delete other users tasks', async () => {
 
 
 ```
-## 섹션 17: Real-Time Web Applications with Socket.io (Chat App)
+## Section 17: Real-Time Web Applications with Socket.io (Chat App)
 0 / 24|4시간 46분
 151. Section Intro: Real-Time Web Applications with Socket.io
 1분
@@ -4679,7 +4701,7 @@ test('Should not delete other users tasks', async () => {
 174. Deploying the Chat Application
 8분
 
-## 섹션 18: Wrapping Up
+## Section 18: Wrapping Up
 0 / 3|7분
 175. Section Intro
 1분
