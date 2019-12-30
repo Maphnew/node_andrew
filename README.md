@@ -4462,6 +4462,77 @@ test('Should not update invalid user fields', async () => {
 148. Setup Task Test Suite
 15분
 
+```json
+// package.json
+  "scripts": {
+    "start": "node src/index.js",
+    "dev": "env-cmd ./config/dev.env nodemon src/index.js",
+    "test": "env-cmd ./config/test.env jest --watch --runInBand"
+  },
+```
+
+```JavaScript
+// tests/user.test.js
+const request = require('supertest')
+const app = require('../src/app')
+const User = require('../src/models/user')
+const { userOneId, userOne, setupDatabase} = require('./fixtures/db')
+
+beforeEach(setupDatabase)
+```
+```JavaScript
+// tests/task.test.js
+const request = require('supertest')
+const app = require('../src/app')
+const Task = require('../src/models/task')
+const { userOneId, userOne, setupDatabase} = require('./fixtures/db')
+
+beforeEach(setupDatabase)
+
+test('Should create task for user', async () => {
+    const response = await request(app)
+        .post('/tasks')
+        .set('Authorization', `Bearer ${userOne.tokens[0].token}`)
+        .send({
+            description: 'From my test'
+        })
+        .expect(201)
+    const task = await Task.findById(response.body._id)
+    expect(task).not.toBeNull()
+    expect(task.completed).toEqual(false)
+})
+
+```
+```JavaScript
+// tests/fixtures/db.js
+const jwt = require('jsonwebtoken')
+const mongoose = require('mongoose')
+const User = require('../../src/models/user')
+
+const userOneId = new mongoose.Types.ObjectId()
+const userOne = {
+    _id: userOneId,
+    name: 'Mike',
+    email: 'mike@example.com',
+    password: '56what!!',
+    tokens: [{
+        token: jwt.sign({ _id: userOneId }, process.env.JWT_SECRET)
+    }]
+}
+
+const setupDatabase = async () => {
+    await User.deleteMany()
+    await new User(userOne).save()
+}
+
+module.exports = {
+    userOneId,
+    userOne,
+    setupDatabase
+}
+
+```
+
 149. Testing with Task Data
 16분
 
