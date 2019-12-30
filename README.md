@@ -4195,6 +4195,26 @@ test('Should add two numbers async/await', async () => {
 141. Testing an Express Application: Part I
 6분
 
+```json
+// package.json
+
+  "scripts": {
+    "start": "node src/index.js",
+    "dev": "env-cmd ./config/dev.env nodemon src/index.js",
+    "test":"env-cmd ./config/test/env jest --watch"
+  },
+  "jest": {
+    "testEnvironment": "node"
+  },
+```
+```
+config/test.env
+
+PORT=3000
+SENDGRID_APIKEY=
+JWT_SECRET=thisismynewcourse
+MONGODB_URL=mongodb://127.0.0.1:27017/task-manager-api-test
+```
 142. Testing an Express Application: Part II
 14분
 
