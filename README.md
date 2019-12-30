@@ -4013,6 +4013,9 @@ $ npm i env-cmd@8.0.2 --save-dev
 136. Section Intro: Testing Node.js
 2분
 
+- npm jest for testing 
+- npm supertest for testing express
+
 137. Jest Testing Framework
 16분
 
@@ -4355,6 +4358,58 @@ test('Should not delete account for unauthenticated user', async () => {
 
 145. Advanced Assertions
 13분
+
+
+```JavaScript
+// src/tests/user.test.js
+
+test('Should signup a new user', async () => {
+    const response = await request(app).post('/users').send({
+        name: 'Maphnew',
+        email: 'maphnew12@example.com',
+        password: 'MyPass888!'
+    }).expect(201)
+
+    // Assert that the database was changed correctly
+    const user = await User.findById(response.body.user._id)
+    expect(user).not.toBeNull()
+
+    // Assertions about the response
+    expect(response.body).toMatchObject({
+        user: {
+            name: 'Maphnew',
+            email: 'maphnew12@example.com'
+        },
+        token: user.tokens[0].token
+    })
+    expect(user.password).not.toBe('MyPass888!')
+})
+
+test('Should login existing user', async () => {
+    const response = await request(app).post('/users/login').send({
+        email: userOne.email,
+        password: userOne.password
+    }).expect(200)
+
+    // Fetch ther user from the database
+    // Assert that token in response matches users second token
+    const user = await User.findById(userOneId)
+    expect(response.body.token).toBe(user.tokens[1].token)
+
+})
+
+
+test('Should delete account for user', async () => {
+    await request(app)
+        .delete('/users/me')
+        .set('Authorization', `Bearer ${userOne.tokens[0].token}`)
+        .send()
+        .expect(200)
+
+    const user = await User.findById(userOneId)
+    expect(user).toBeNull()
+})
+```
 
 146. Mocking Libraries
 6분
