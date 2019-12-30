@@ -4536,6 +4536,42 @@ module.exports = {
 149. Testing with Task Data
 16분
 
+- Challenge
+
+```JavaScript
+const { 
+    userOneId, 
+    userOne, 
+    userTwoId, 
+    userTwo, 
+    taskOne, 
+    taskTwo, 
+    taskThree, 
+    setupDatabase
+} = require('./fixtures/db')
+
+
+test('Should fetch user tasks', async () => {
+    const response = await request(app)
+        .get('/tasks')
+        .set('Authorization', `Bearer ${userOne.tokens[0].token}`)
+        .send()
+        .expect(200)
+    
+    expect(response.body.length).toEqual(2)
+})
+
+test('Should not delete other users tasks', async () => {
+    const response = await request(app)
+        .delete(`/task/${taskOne._id}`)
+        .set('Authorization', `Bearer ${userTwo.tokens[0].token}`)
+        .send()
+        .expect(404)
+    const task = await Task.findById(taskOne._id)
+    expect(task).not.toBeNull()
+})
+```
+
 150. Bonus: Extra Test Ideas
 3분
 ## 섹션 17: Real-Time Web Applications with Socket.io (Chat App)
