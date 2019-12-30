@@ -3965,7 +3965,7 @@ $ npm i @sendgrid/mail@6.4.0
 
 const sgMail = require('@sendgrid/mail')
 
-const sendgridAPIKey = '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'
+const sendgridAPIKey = '~~~~'
 
 sgMail.setApiKey(sendgridAPIKey)
 
@@ -4413,6 +4413,21 @@ test('Should delete account for user', async () => {
 
 146. Mocking Libraries
 6분
+- jestjs-mocks
+- https://jestjs.io/docs/en/manual-mocks
+
+```JavaScript
+// tests/__mocks__/@sendgrid/mail.js
+
+module.exports = {
+    setApiKey() {
+
+    },
+    send() {
+        
+    }
+}
+```
 
 147. Wrapping up User Tests
 16분

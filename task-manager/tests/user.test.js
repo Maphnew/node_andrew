@@ -94,3 +94,4 @@ test('Should not delete account for unauthenticated user', async () => {
         .send()
         .expect(401)
 })
+
