@@ -4165,6 +4165,33 @@ $ npm test
 140. Testing Asynchronous Code
 14분
 
+```json
+// package.json
+  "scripts": {
+    "start": "node src/index.js",
+    "dev": "env-cmd ./config/dev.env nodemon src/index.js",
+    "test":"jest --watch"
+  },
+```
+```bash
+$ npm test
+```
+
+```JavaScript
+// tests/math.test.js
+test('Should add two numbers', (done) => {
+    add(2, 3).then((sum) => {
+        expect(sum).toBe(5)
+        done()
+    })
+})
+
+test('Should add two numbers async/await', async () => {
+    const sum = await add(11, 22)
+    expect(sum).toBe(32)
+})
+```
+
 141. Testing an Express Application: Part I
 6분
 
