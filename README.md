@@ -4361,7 +4361,7 @@ test('Should not delete account for unauthenticated user', async () => {
 
 
 ```JavaScript
-// src/tests/user.test.js
+// tests/user.test.js
 
 test('Should signup a new user', async () => {
     const response = await request(app).post('/users').send({
@@ -4431,6 +4431,33 @@ module.exports = {
 
 147. Wrapping up User Tests
 16분
+
+```JavaScript
+// tests/user.test.js
+
+test('Should update valid user fields', async () => {
+    const response = await request(app)
+        .patch('/users/me')
+        .set('Authorization', `Bearer ${userOne.tokens[0].token}`)
+        .send({
+            name: 'sara'
+        })
+        .expect(200)
+    
+    const user = await User.findById(userOneId)
+    expect(user.name).toEqual('sara')
+})
+
+test('Should not update invalid user fields', async () => {
+    const response = await request(app)
+        .patch('/user/me')
+        .set('Authorization', `Bearer ${userOne.tokens[0].token}`)
+        .send({
+            location: 'Boston'
+        })
+        .expect(404)
+})
+```
 
 148. Setup Task Test Suite
 15분
