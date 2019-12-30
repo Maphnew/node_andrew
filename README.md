@@ -4218,8 +4218,88 @@ MONGODB_URL=mongodb://127.0.0.1:27017/task-manager-api-test
 142. Testing an Express Application: Part II
 14분
 
+
+```JavaScript
+// src/tests/user.test.js
+const request = require('supertest')
+const app = require('../src/app')
+
+test('Should signup a new user', async () => {
+    await request(app).post('/users').send({
+        name: 'Maphnew',
+        email: 'maphnew2@example.com',
+        password: 'MyPass888!'
+    }).expect(201)
+})
+```
+```JavaScript
+// src/app.js
+const express = require('express')
+require('./db/mongoose')
+const userRouter = require('./router/user')
+const taskRouter = require('./router/task')
+
+const app = express()
+
+app.use(express.json())
+app.use(userRouter)
+app.use(taskRouter)
+
+module.exports = app
+```
+```JavaScript
+// src/index.js
+const app = require('./app')
+const port = process.env.PORT
+
+app.listen(port, () => {
+    console.log('Server is up on port ', port)
+})
+```
+
 143. Jest Setup and Teardown
 14분
+
+```JavaScript
+// src/tests/user.test.js
+const request = require('supertest')
+const app = require('../src/app')
+const User = require('../src/models/user')
+
+const userOne = {
+    name: 'Mike',
+    email: 'mike@example.com',
+    password: '56what!!'
+}
+
+beforeEach(async () => {
+    await User.deleteMany()
+    await new User(userOne).save()
+})
+
+test('Should signup a new user', async () => {
+    await request(app).post('/users').send({
+        name: 'Maphnew',
+        email: 'maphnew12@example.com',
+        password: 'MyPass888!'
+    }).expect(201)
+})
+
+test('Should login existing user', async () => {
+    await request(app).post('/users/login').send({
+        email: userOne.email,
+        password: userOne.password
+    }).expect(200)
+})
+
+test('Should not login nonexistent user', async ()=>{
+    await await request(app).post('/users/login').send({
+        email: 'abc@email.com',
+        password: 'foa0187rqwead'
+    }).expect(400)
+})
+
+```
 
 144. Testing with Authentication
 13분
