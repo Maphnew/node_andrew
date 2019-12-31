@@ -4825,6 +4825,39 @@ io.on('connection', (socket) => {
 158. Sharing Your Location
 15분
 
+```html
+<!-- public/index.html -->
+
+    <button id="send-location">Send location</button>
+```
+
+```JavaScript
+// public/js/chat.js
+
+document.querySelector('#send-location').addEventListener('click', () => {
+    if (!navigator.geolocation) {
+        return alert('Geolocation is not supported by your browser.')
+    }
+
+    navigator.geolocation.getCurrentPosition((position) => {
+        // console.log(position)
+        socket.emit('sendLocation', {
+            latitude: position.coords.latitude,
+            longitude: position.coords.longitude
+        })
+    })
+})
+```
+```JavaScript
+// src/index.js
+
+    socket.on('sendLocation', (coords) => {
+        
+        io.emit('message', `https://google.com/maps?q=${coords.latitude},${coords.longitude}`)
+    })
+```
+
+
 159. Event Acknowledgements
 13분
 
