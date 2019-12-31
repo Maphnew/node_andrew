@@ -4748,6 +4748,44 @@ document.querySelector('#increment').addEventListener('click', () => {
 ```
 156. Socket.io Events Challenge
 16분
+```html
+<!-- public/index.html -->
+
+    <form id="message-form">
+        <h1>Weather</h1>
+        <input name="message" placeholder="Message">
+        <button value="submit">Submit</button>
+    </form>
+```
+
+```JavaScript
+// public/js/chat.js
+socket.on('message', (message) => {
+    console.log(message)
+})
+
+document.querySelector('#message-form').addEventListener('submit', (e) => {
+    e.preventDefault()
+
+    const message = e.target.elements.message.value
+
+    socket.emit('sendMessage', message)
+})
+```
+```JavaScript
+// src/index.js
+
+io.on('connection', (socket) => {
+    console.log('New WebSocket connection')
+
+    socket.emit('message', 'Welcome!')
+
+    socket.on('sendMessage', (message) => {
+        io.emit('message', message)
+    })
+
+})
+```
 
 157. Broadcasting Events
 6분
