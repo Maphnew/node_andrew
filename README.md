@@ -4789,6 +4789,38 @@ io.on('connection', (socket) => {
 
 157. Broadcasting Events
 6분
+- To emit particular connection: socket.emit()
+- To emit to everybody but that particular connection: socket.broadcast.emit()
+- To emit to send it everyone: io.emit()
+```JavaScript
+//To emit particular connection
+socket.emit('message', 'Welcome!')
+//To emit to everybody but that particular connection
+socket.broadcast.emit('message', 'A new user has joined!')
+//To emit to send it everyone
+io.emit('message', message)
+```
+
+```JavaScript
+// src/index.js
+
+io.on('connection', (socket) => {
+    console.log('New WebSocket connection')
+
+    socket.emit('message', 'Welcome!')
+    socket.broadcast.emit('message', 'A new user has joined!')
+
+    socket.on('sendMessage', (message) => {
+        io.emit('message', message)
+    })
+
+    socket.on('disconnect', () => {
+        io.emit('message', 'A user has left!')
+    })
+
+})
+
+```
 
 158. Sharing Your Location
 15분
