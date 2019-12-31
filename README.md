@@ -4644,6 +4644,34 @@ test('Should not delete other users tasks', async () => {
 154. Getting Started with Socket.io
 12분
 
+```bash
+$ npm i socket.io@2.2.0
+```
+```JavaScript
+// src/index.js
+
+const path = require('path')
+const http = require('http')
+const express = require('express')
+const socketio = require('socket.io')
+
+const app = express()
+const server = http.createServer(app)
+const io = socketio(server)
+
+const port = process.env.PORT || 3000
+const publicDirectoryPath = path.join(__dirname, '../public')
+
+app.use(express.static(publicDirectoryPath))
+
+io.on('connection', () => {
+    console.log('New WebSocket connection')
+})
+
+server.listen(port, () => {
+    console.log(`http://localhost:${port}`)
+})
+```
 155. Socket.io Events
 17분
 
