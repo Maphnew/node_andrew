@@ -4635,6 +4635,9 @@ test('Should not delete other users tasks', async () => {
 152. Creating the Chat App Project
 13분
 
+- Setup express
+- Scripts at package.json
+
 153. WebSockets
 6분
 
