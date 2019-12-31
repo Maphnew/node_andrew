@@ -4675,6 +4675,77 @@ server.listen(port, () => {
 155. Socket.io Events
 17분
 
+- server (emit) -> client (receive) - countUpdated  
+- client (emit) -> server (receive) - increment  
+
+```JavaScript
+// src/index.js
+
+const path = require('path')
+const http = require('http')
+const express = require('express')
+const socketio = require('socket.io')
+
+const app = express()
+const server = http.createServer(app)
+const io = socketio(server)
+
+const port = process.env.PORT || 3000
+const publicDirectoryPath = path.join(__dirname, '../public')
+
+app.use(express.static(publicDirectoryPath))
+
+let count = 0
+
+io.on('connection', (socket) => {
+    console.log('New WebSocket connection')
+
+    socket.emit('countUpdated', count)
+
+    socket.on('increment', () => {
+        count++
+        io.emit('countUpdated', count)
+    })
+})
+
+server.listen(port, () => {
+    console.log(`http://localhost:${port}`)
+})
+```
+
+```JavaScript
+// public/js/chat.js
+
+const socket = io()
+
+socket.on('countUpdated', (count) => {
+    console.log('The count has been updated!', count)
+})
+
+document.querySelector('#increment').addEventListener('click', () => {
+    console.log('Clicked')
+    socket.emit('increment')
+})
+```
+```html
+<!-- public/index.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Chat App</title>
+</head>
+<body>
+    <h1>Chat App</h1>
+    <button id="increment">+1</button>
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="/js/chat.js"></script>
+</body>
+</html>
+```
 156. Socket.io Events Challenge
 16분
 
