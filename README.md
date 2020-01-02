@@ -5122,6 +5122,54 @@ module.exports = {
 164. Timestamps for Location Messages
 7분
 
+```html
+<!-- public/index.html -->
+    <script id="location-message-template" type="text/html">
+        <div>
+            <p>{{createdAt}} - <a href={{url}} target="_blank">My current location</a></p>
+        </div>
+    </script>
+```
+
+```JavaScript
+// src/index.js
+const { generateMessage, generateLocationMessage } = require('./utils/messages')
+
+    socket.on('sendLocation', (coords, callback) => {
+        
+        io.emit('locationMessage', `https://google.com/maps?q=${coords.latitude},${coords.longitude}`)
+        callback()
+    })
+```
+
+```JavaScript
+// public/js/chat.js
+
+socket.on('locationMessage', (url) => {
+    console.log(url)
+    const html = Mustache.render(locationMessageTemplate, {
+        url: url.url,
+        createdAt: moment(url.createdAt).format('h:mm a')
+    })
+    $messages.insertAdjacentHTML('beforeend', html)
+})
+```
+
+```JavaScript
+// src/utils/messages.js
+
+const generateLocationMessage = (url) => {
+    return {
+        url,
+        createdAt: new Date().getTime()
+    }
+}
+
+module.exports = {
+    generateMessage,
+    generateLocationMessage
+}
+```
 165. Styling the Chat App
 13분
 
