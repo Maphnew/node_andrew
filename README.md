@@ -5014,6 +5014,39 @@ socket.on('message', (message) => {
 162. Rendering Location Messages
 10분
 
+```JavaScript
+// public/js/chat.js
+
+const locationMessageTemplate = document.querySelector('#location-message-template').innerHTML
+
+socket.on('locationMessage', (url) => {
+    console.log(url)
+    const html = Mustache.render(locationMessageTemplate, {
+        url
+    })
+    $messages.insertAdjacentHTML('beforeend', html)
+})
+```
+
+```JavaScript
+// src/index.js
+
+    socket.on('sendLocation', (coords, callback) => {
+        
+        io.emit('locationMessage', `https://google.com/maps?q=${coords.latitude},${coords.longitude}`)
+        callback()
+    })
+
+```
+
+```html
+<!-- public/index.html -->
+    <script id="location-message-template" type="text/html">
+        <div>
+            <p><a href={{url}} target="_blank">My current location</a></p>
+        </div>
+    </script>
+```
 163. Working with Time
 20분
 
