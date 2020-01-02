@@ -4969,6 +4969,48 @@ $sendLocationButton.addEventListener('click', () => {
 161. Rendering Messages
 13분
 
+```JavaScript
+// public/js/chat.js
+
+const $messages = document.querySelector('#messages')
+
+// Templates
+const messageTemplate = document.querySelector('#message-template').innerHTML
+
+socket.on('message', (message) => {
+    console.log(message)
+    const html = Mustache.render(messageTemplate, {
+        message
+    })
+    $messages.insertAdjacentHTML('beforeend', html)
+})
+```
+
+```html
+<!-- public/index.html -->
+
+    <div id="messages"></div>
+
+    <form id="message-form">
+        <!-- <h1>Weather</h1> -->
+        <input name="message" placeholder="Message">
+        <button>Send</button>
+    </form>
+    <button id="send-location">Send location</button>
+
+    <script id="message-template" type="text/html">
+        <div>
+            <p>{{message}}</p>
+        </div>
+    </script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mustache.js/3.0.1/mustache.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qs/6.6.0/qs.min.js"></script>
+ 
+
+```
+
 162. Rendering Location Messages
 10분
 
