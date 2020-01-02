@@ -5050,6 +5050,75 @@ socket.on('locationMessage', (url) => {
 163. Working with Time
 20분
 
+```html
+<!-- public/index.html -->
+    <script id="message-template" type="text/html">
+        <div>
+            <p>{{createdAt}} - {{message}}</p>
+        </div>
+    </script>
+```
+
+```JavaScript
+// src/index.js
+const { generateMessage } = require('./utils/messages')
+
+io.on('connection', (socket) => {
+
+    socket.emit('message', generateMessage('Welcome!'))
+    socket.broadcast.emit('message', generateMessage('A new user has joined!'))
+
+    socket.on('sendMessage', (message, callback) => {
+        const filter = new Filter()
+
+        if (filter.isProfane(message)) {
+            return callback('Profanity is not allowed!')
+        }
+        
+        io.emit('message', generateMessage(message))
+        callback()
+    })
+
+    socket.on('disconnect', () => {
+        io.emit('message', generateMessage('A user has left!'))
+    })
+
+    socket.on('sendLocation', (coords, callback) => {
+        
+        io.emit('locationMessage', `https://google.com/maps?q=${coords.latitude},${coords.longitude}`)
+        callback()
+    })
+
+})
+```
+
+```JavaScript
+// public/js/chat.js
+
+socket.on('message', (message) => {
+    console.log(message)
+    const html = Mustache.render(messageTemplate, {
+        message: message.text,
+        createdAt: moment(message.createdAt).format('h:mm a')
+    })
+    $messages.insertAdjacentHTML('beforeend', html)
+})
+```
+
+```JavaScript
+// src/utils/messages.js
+
+const generateMessage = (text) => {
+    return {
+        text,
+        createdAt: new Date().getTime()
+    }
+}
+
+module.exports = {
+    generateMessage
+}
+```
 164. Timestamps for Location Messages
 7분
 
