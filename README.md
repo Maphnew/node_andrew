@@ -5330,6 +5330,29 @@ module.exports = {
 167. Socket.io Rooms
 15분
 
+```JavaScript
+// src/index.js
+
+    socket.on('join', ({ username, room }) => {
+        socket.join(room)
+
+        socket.emit('message', generateMessage('Welcome!'))
+        socket.broadcast.to(room).emit('message', generateMessage(`${username} has joined!`))
+
+        // socket.emit, io.emit, socket.broadcast.emit
+        // io.to.emit, socket.broadcast.to.emit
+    })
+```
+
+```JavaScript
+// public/js/chat.js
+
+// Options
+const { username, room } = Qs.parse(location.search, { ignoreQueryPrefix: true })
+
+socket.emit('join', { username, room })
+```
+
 168. Storing Users: Part I
 17분
 
