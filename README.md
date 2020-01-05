@@ -5418,6 +5418,26 @@ console.log(users)
 169. Storing Users: Part II
 8분
 
+```JavaScript
+// src/utils/users.js
+
+const getUser = (id) => {
+    return users.find((user) => user.id === id)
+}
+
+const getUsersInRoom = (room) => {
+    room = room.trim().toLowerCase()
+    return users.filter((user) => user.room === room) 
+}
+
+module.exports = {
+    addUser,
+    removeUser,
+    getUser,
+    getUsersInRoom
+}
+```
+
 170. Tracking Users Joining and Leaving
 14분
 
