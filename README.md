@@ -5486,14 +5486,169 @@ const { addUser, removeUser, getUser, getUsersInRoom } = require('./utils/users'
 171. Sending Messages to Rooms
 14분
 
+```html
+<!-- pulic/chat.html -->
+
+        <input name="message" placeholder="Message" required autocomplete="off">
+        <span class="message__name">{{username}}</span>
+
+```
+
+```JavaScript
+// public/js/chat.js
+
+
+    const html = Mustache.render(locationMessageTemplate, {
+        username: message.username,
+        url: message.url,
+        createdAt: moment(message.createdAt).format('h:mm a')
+    })
+
+        const html = Mustache.render(messageTemplate, {
+        username: message.username,
+        message: message.text,
+        createdAt: moment(message.createdAt).format('h:mm a')
+    })
+```
+
+```JavaScript
+// src/index.js
+
+        socket.emit('message', generateMessage('Admin', 'Welcome!'))
+        socket.broadcast.to(user.room).emit('message', generateMessage('Admin', `${user.username} has joined!`))
+
+    socket.on('sendMessage', (message, callback) => {
+        const user = getUser(socket.id)
+        const filter = new Filter()
+
+        if (filter.isProfane(message)) {
+            return callback('Profanity is not allowed!')
+        }
+        
+        io.to(user.room).emit('message', generateMessage(user.username, message))
+        callback()
+    })
+
+    socket.on('sendLocation', (coords, callback) => {
+        const user = getUser(socket.id)
+        io.to(user.room).emit('locationMessage', generateLocationMessage(user.username, `https://google.com/maps?q=${coords.latitude},${coords.longitude}`))
+        callback()
+    })
+
+        if (user) {
+        io.to(user.room).emit('message', generateMessage('Admin', `${user.username} has left!`))
+    }
+
+
+```
+
+```JavaScript
+// src/utils/messages.js
+
+const generateMessage = (username, text) => {
+    return {
+        username,
+        text,
+        createdAt: new Date().getTime()
+    }
+}
+
+const generateLocationMessage = (username, url) => {
+    return {
+        username,
+        url,
+        createdAt: new Date().getTime()
+    }
+}
+
+
+```
+
 172. Rendering User List
 12분
+
+```html
+<!-- pulic/chat.html -->
+
+```
+
+```html
+<!-- pulic/index.html -->
+
+```
+
+```JavaScript
+// public/js/chat.js
+
+```
+
+```JavaScript
+// src/index.js
+
+```
+
+```JavaScript
+// src/utils/messages.js
+
+```
 
 173. Automatic Scrolling
 16분
 
+```html
+<!-- pulic/chat.html -->
+
+```
+
+```html
+<!-- pulic/index.html -->
+
+```
+
+```JavaScript
+// public/js/chat.js
+
+```
+
+```JavaScript
+// src/index.js
+
+```
+
+```JavaScript
+// src/utils/messages.js
+
+```
+
+
 174. Deploying the Chat Application
 8분
+
+```html
+<!-- pulic/chat.html -->
+
+```
+
+```html
+<!-- pulic/index.html -->
+
+```
+
+```JavaScript
+// public/js/chat.js
+
+```
+
+```JavaScript
+// src/index.js
+
+```
+
+```JavaScript
+// src/utils/messages.js
+
+```
+
 
 ## Section 18: Wrapping Up
 0 / 3|7분
