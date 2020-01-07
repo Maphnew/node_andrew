@@ -5692,31 +5692,14 @@ socket.on('message', (message) => {
 174. Deploying the Chat Application
 8분
 
-```html
-<!-- pulic/chat.html -->
+- git push
+- heroku push
+```bash
+$ heroku create maphnew-chat-app-node.js
+$ git push heroku master
 
 ```
-
-```html
-<!-- pulic/index.html -->
-
-```
-
-```JavaScript
-// public/js/chat.js
-
-```
-
-```JavaScript
-// src/index.js
-
-```
-
-```JavaScript
-// src/utils/messages.js
-
-```
-
+- https://maphnew-chat-app-nodejs.herokuapp.com/
 
 ## Section 18: Wrapping Up
 0 / 3|7분
