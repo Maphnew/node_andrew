@@ -5637,30 +5637,56 @@ socket.on('roomData', ({ room, users }) => {
 173. Automatic Scrolling
 16분
 
-```html
-<!-- pulic/chat.html -->
-
-```
-
-```html
-<!-- pulic/index.html -->
-
-```
 
 ```JavaScript
 // public/js/chat.js
+const autoscroll = () => {
+    // New message element
+    const $newMessage = $messages.lastElementChild
 
+    // Height of the new message
+    const newMessageStyles = getComputedStyle($newMessage)
+    const newMessageMargin = parseInt(newMessageStyles.marginBottom)
+    const newMessageHeight = $newMessage.offsetHeight + newMessageMargin
+
+    // Visible height
+    const visibleHeight = $messages.offsetHeight
+
+    // Height of messages container
+    const containerHeight = $messages.scrollHeight
+
+    // How far have I scrolled?
+    const scrollOffset = $messages.scrollTop + visibleHeight
+
+    if (containerHeight - newMessageHeight <= scrollOffset) {
+        $messages.scrollTop = $messages.scrollHeight
+    }
+}
+
+socket.on('locationMessage', (message) => {
+    console.log(message)
+    const html = Mustache.render(locationMessageTemplate, {
+        username: message.username,
+        url: message.url,
+        createdAt: moment(message.createdAt).format('h:mm a')
+    })
+    $messages.insertAdjacentHTML('beforeend', html)
+    autoscroll()
+})
+
+socket.on('message', (message) => {
+    console.log(message)
+    const html = Mustache.render(messageTemplate, {
+        username: message.username,
+        message: message.text,
+        createdAt: moment(message.createdAt).format('h:mm a')
+    })
+    $messages.insertAdjacentHTML('beforeend', html)
+    autoscroll()
+})
 ```
 
-```JavaScript
-// src/index.js
 
-```
-
-```JavaScript
-// src/utils/messages.js
-
-```
 
 
 174. Deploying the Chat Application
