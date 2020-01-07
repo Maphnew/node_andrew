@@ -5569,28 +5569,70 @@ const generateLocationMessage = (username, url) => {
 
 ```html
 <!-- pulic/chat.html -->
+<body>
+    <div class="chat">
+        <div id="sidebar" class="chat__sidebar">
 
+    <script id="sidebar-template" type="text/html">
+        <h2 class="room-title">{{room}}</h2>
+        <h3 class="list-title">Users</h3>
+        <ul class="users">
+            {{#users}}
+                <li>{{username}}</li>
+            {{/users}}
+        </ul>
+    </script>
 ```
 
-```html
-<!-- pulic/index.html -->
 
-```
 
 ```JavaScript
 // public/js/chat.js
+const sidebarTemplate = document.querySelector('#sidebar-template').innerHTML
 
+socket.on('roomData', ({ room, users }) => {
+    const html = Mustache.render(sidebarTemplate, {
+        room,
+        users
+    })
+    document.querySelector('#sidebar').innerHTML = html
+})
 ```
 
 ```JavaScript
 // src/index.js
+    socket.on('join', (options, callback) => {
+        const { error, user } = addUser({ id: socket.id, ...options })
 
+        if (error) {
+            return callback(error)
+        }
+
+        socket.join(user.room)
+
+        socket.emit('message', generateMessage('Admin', 'Welcome!'))
+        socket.broadcast.to(user.room).emit('message', generateMessage('Admin', `${user.username} has joined!`))
+        io.to(user.room).emit('roomData', {
+            room: user.room,
+            users: getUsersInRoom(user.room)
+        })
+        callback()
+    })
+
+
+    socket.on('disconnect', () => {
+        const user = removeUser(socket.id)
+
+        if (user) {
+            io.to(user.room).emit('message', generateMessage('Admin', `${user.username} has left!`))
+            io.to(user.room).emit('roomData', {
+                room: user.room,
+                users: getUsersInRoom(user.room)
+            })
+        }
+    })
 ```
 
-```JavaScript
-// src/utils/messages.js
-
-```
 
 173. Automatic Scrolling
 16분
