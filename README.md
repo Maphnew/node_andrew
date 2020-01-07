@@ -5441,6 +5441,48 @@ module.exports = {
 170. Tracking Users Joining and Leaving
 14분
 
+```JavaScript
+// public/js/chat.js
+
+socket.emit('join', { username, room }, (error) => {
+    if (error) {
+        alert(error)
+        location.href = '/'
+    }
+})
+
+```
+
+```JavaScript
+// src/index.js
+const { addUser, removeUser, getUser, getUsersInRoom } = require('./utils/users')
+
+    socket.on('join', (options, callback) => {
+        const { error, user } = addUser({ id: socket.id, ...options })
+
+        if (error) {
+            return callback(error)
+        }
+
+        socket.join(user.room)
+
+        socket.emit('message', generateMessage('Welcome!'))
+        socket.broadcast.to(user.room).emit('message', generateMessage(`${user.username} has joined!`))
+
+        callback()
+
+    })
+
+        socket.on('disconnect', () => {
+        const user = removeUser(socket.id)
+
+        if (user) {
+            io.to(user.room).emit('message', generateMessage(`${user.username} has left!`))
+        }
+    })
+
+```
+
 171. Sending Messages to Rooms
 14분
 
